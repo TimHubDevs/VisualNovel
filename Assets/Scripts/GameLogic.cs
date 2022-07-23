@@ -1,9 +1,16 @@
+using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
     [SerializeField] private List<Act> _acts;
+
+    private void Start()
+    {
+        DOTween.Init();
+    }
 
     public void StartPlay()
     {

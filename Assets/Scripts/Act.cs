@@ -7,6 +7,5 @@ public class Act : MonoBehaviour
     
     public virtual void StartAct()
     {
-        Debug.Log("Start Act");
     }
 }
