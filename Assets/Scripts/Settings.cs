@@ -12,6 +12,7 @@ public class Settings : MonoBehaviour
     Resolution[] resolutions;
     void Start()
     {
+        //TODO: Зробити зберігання налаштування, при перезаході в гру
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         resolutions = Screen.resolutions;
@@ -19,12 +20,19 @@ public class Settings : MonoBehaviour
 
         for (int i = 0; i < resolutions.Length; i++)
         {
+            if (resolutions[i].refreshRate < 144)
+            {
+                return;
+            }
             string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRate + "Hz";
             options.Add(option);
-            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
+            {
                 currentResolutionIndex= i;
+            }
         }
-
+        
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
         LoadSettings(currentResolutionIndex);

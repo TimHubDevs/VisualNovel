@@ -378,6 +378,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2135410999 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1960732221609164850, guid: f18590f270bbf4046be30766c75aa646, type: 3}
+  m_PrefabInstance: {fileID: 1960732222125131011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2143487282 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1960732221609164849, guid: f18590f270bbf4046be30766c75aa646, type: 3}
@@ -390,6 +395,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2001741545}
     m_Modifications:
+    - target: {fileID: 557237446040404201, guid: a7d40a2027cbc0749b68f4780bd7a29c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2135410999}
+    - target: {fileID: 557237446040404201, guid: a7d40a2027cbc0749b68f4780bd7a29c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 557237446126559208, guid: a7d40a2027cbc0749b68f4780bd7a29c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -574,6 +587,14 @@ PrefabInstance:
     - target: {fileID: 1960732221609164850, guid: f18590f270bbf4046be30766c75aa646, type: 3}
       propertyPath: m_Name
       value: Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 7081048415675993850, guid: f18590f270bbf4046be30766c75aa646, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7081048415675993850, guid: f18590f270bbf4046be30766c75aa646, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f18590f270bbf4046be30766c75aa646, type: 3}
