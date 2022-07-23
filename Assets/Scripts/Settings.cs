@@ -1,83 +1,83 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Settings : MonoBehaviour
 {
-    public Dropdown resolutionDropdown;
-    public Dropdown qualityDropdown;
+    [SerializeField] private Dropdown resolutionDropdown;
+    [SerializeField] private Toggle fullScreenToggle;
 
-    Resolution[] resolutions;
-    void Start()
+    private Resolution[] _resolutions;
+
+    private void Start()
     {
-        //TODO: Зробити зберігання налаштування, при перезаході в гру
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
-        resolutions = Screen.resolutions;
-        int currentResolutionIndex = 0;
+        _resolutions = Screen.resolutions;
 
-        for (int i = 0; i < resolutions.Length; i++)
+        for (int i = 0; i < _resolutions.Length; i++)
         {
-            if (resolutions[i].refreshRate < 144)
+            if (_resolutions[i].refreshRate < 144)
             {
                 return;
             }
-            string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRate + "Hz";
+            string option = _resolutions[i].width + "x" + _resolutions[i].height + " " + _resolutions[i].refreshRate + "Hz";
             options.Add(option);
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex= i;
-            }
         }
         
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
-        LoadSettings(currentResolutionIndex);
+        LoadSettings();
+        SaveSettings();
+#if UNITY_WEBGL
+        fullScreenToggle.gameObject.SetActive(false);
+#endif
     }
+
 
     public void SetFullscreen(bool isFullscreen)
     {
-        Screen.fullScreen= isFullscreen ;
+        Screen.fullScreen = isFullscreen ;
+        SaveSettings();
     }
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
+        Resolution resolution = _resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        SaveSettings();
     }
 
-    public void SetQuality(int qualityIndex)
+    private void SaveSettings()
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
-    }
-
-    public void SaveSattings()
-    {
-        PlayerPrefs.SetInt("QualitySettingsPreference", qualityDropdown.value);
+        var fullScreenValue = fullScreenToggle.isOn ? 1 : 0;
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
-        PlayerPrefs.SetInt("FullscreenPreferance", System.Convert.ToInt32(Screen.fullScreen));
+        PlayerPrefs.SetInt("FullscreenPreference", fullScreenValue);
     }
 
 
-    public void LoadSettings(int currentResolutionIndex)
+    private void LoadSettings()
     {
-        if (PlayerPrefs.HasKey("QualitySettingsPreference"))
-            qualityDropdown.value = PlayerPrefs.GetInt("QualitySettingsPreference");
-        else
-            qualityDropdown.value = 3;
-
-        if (PlayerPrefs.HasKey("ResolutionPreference"))
-            resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionPreference");
-        else
-            resolutionDropdown.value = currentResolutionIndex
-                ;
-        if (PlayerPrefs.HasKey("FullscreenPreferance"))
-            Screen.fullScreen = System.Convert.ToBoolean(PlayerPrefs.GetInt("FullscreenPreferance"));
-        else
-            Screen.fullScreen = true;
+        resolutionDropdown.value = LoadResolutionSetting();
+        fullScreenToggle.isOn = LoadFullScreenSetting();
+        SetFullscreen(LoadFullScreenSetting());
     }
 
+    private int LoadResolutionSetting()
+    {
+        if (PlayerPrefs.HasKey("ResolutionPreference") == false)
+        {
+            PlayerPrefs.SetInt("ResolutionPreference", 0);
+        }
+        return PlayerPrefs.GetInt("ResolutionPreference");
+    }
+    
+    private bool LoadFullScreenSetting()
+    {
+        if (PlayerPrefs.HasKey("FullscreenPreference") == false)
+        {
+            PlayerPrefs.SetInt("FullscreenPreference", 0);
+        }
+        return PlayerPrefs.GetInt("FullscreenPreference") != 0;
+    }
 }
