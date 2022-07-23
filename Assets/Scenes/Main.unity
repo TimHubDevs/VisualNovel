@@ -222,6 +222,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &825554444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 557237446444673731, guid: a7d40a2027cbc0749b68f4780bd7a29c, type: 3}
+  m_PrefabInstance: {fileID: 557237445697345239}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1285885427 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1056919403515127207, guid: f18590f270bbf4046be30766c75aa646, type: 3}
@@ -349,8 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 1285885427}
   fullScreenToggle: {fileID: 39514591}
-  settingsPanel: {fileID: 2135410999}
-  settingsText: {fileID: 1960732222125131012}
+  exitButton: {fileID: 825554444}
 --- !u!1 &2111883403
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,14 +722,3 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2772604102112705751, guid: f18590f270bbf4046be30766c75aa646, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f18590f270bbf4046be30766c75aa646, type: 3}
---- !u!114 &1960732222125131012 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 835317389743141464, guid: f18590f270bbf4046be30766c75aa646, type: 3}
-  m_PrefabInstance: {fileID: 1960732222125131011}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
