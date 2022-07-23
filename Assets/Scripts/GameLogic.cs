@@ -1,18 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private List<Act> _acts;
 
-    // Update is called once per frame
-    void Update()
+    public void StartPlay()
     {
-        
+        _acts[0].gameObject.SetActive(true);
+        _acts[0].StartAct();
+    }
+    
+    public void LoadPlay()
+    {
+        // load and play act in save system
+    }
+    
+    public void HideAct()
+    {
+        // set act active false
     }
 }
