@@ -17,11 +17,11 @@ public class Act0 : Act
         Debug.Log("Sound 'Вибух. Тяжкий подих. Серцебиття'");
         yield return new WaitForSeconds(1);
         AnimateImageShow(_smoke);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         Debug.Log("Sound 'Тупотіння, Збігає вниз. Додаємо тривожну музику.'");
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         AnimateImageShow(_foreground);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         Debug.Log("End Act 0");
     }
 
@@ -32,6 +32,6 @@ public class Act0 : Act
         imageColor.a = 0;
         image.color = imageColor;
         imageColor.a = 1;
-        DOTween.To(() => image.color, value => image.color = value, imageColor, 5);
+        DOTween.To(() => image.color, value => image.color = value, imageColor, 3);
     }
 }
