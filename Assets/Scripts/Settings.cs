@@ -7,45 +7,47 @@ public class Settings : MonoBehaviour
     [SerializeField] private Dropdown resolutionDropdown;
     [SerializeField] private Toggle fullScreenToggle;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private Text settingsText;
 
     private Resolution[] _resolutions;
     
     public void Awake()
     {
-        settingsPanel.SetActive(true);
+        settingsText.text = $" Awake, ";
+        // settingsPanel.SetActive(true);
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         _resolutions = Screen.resolutions;
-
+        settingsText.text += $" _resolutions {_resolutions.Length}, ";
         for (int i = 0; i < _resolutions.Length; i++)
         {
-            if (_resolutions[i].refreshRate < 144)
-            {
-                return;
-            }
             string option = _resolutions[i].width + "x" + _resolutions[i].height + " " + _resolutions[i].refreshRate + "Hz";
             options.Add(option);
+            settingsText.text += $" option {i} {option}, ";
         }
         
         resolutionDropdown.AddOptions(options);
+        settingsText.text += $" AddOptions {options.Count}, ";
         resolutionDropdown.RefreshShownValue();
         LoadSettings();
         SaveSettings();
 #if UNITY_WEBGL
         fullScreenToggle.gameObject.SetActive(false);
 #endif
-        settingsPanel.SetActive(false);
+        // settingsPanel.SetActive(false);
     }
     
     public void SetFullscreen()
     {
+        settingsText.text += $" SetFullscreen {fullScreenToggle.isOn}, ";
         Screen.fullScreen = fullScreenToggle.isOn ;
         SaveSettings();
     }
 
     public void SetResolution()
     {
-        Resolution resolution = _resolutions[resolutionDropdown.value + 1];
+        Resolution resolution = _resolutions[resolutionDropdown.value];
+        settingsText.text += $" SetResolution {resolution.width}*{resolution.height}, ";
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         SaveSettings();
     }
@@ -60,6 +62,7 @@ public class Settings : MonoBehaviour
 
     private void LoadSettings()
     {
+        settingsText.text += $" LoadSettings, ";
         resolutionDropdown.value = LoadResolutionSetting();
         fullScreenToggle.isOn = LoadFullScreenSetting();
         SetFullscreen();
@@ -72,6 +75,7 @@ public class Settings : MonoBehaviour
         {
             PlayerPrefs.SetInt("ResolutionPreference", 0);
         }
+        settingsText.text += $" LoadResolutionSetting {PlayerPrefs.GetInt("ResolutionPreference")}, ";
         return PlayerPrefs.GetInt("ResolutionPreference");
     }
     
@@ -81,6 +85,12 @@ public class Settings : MonoBehaviour
         {
             PlayerPrefs.SetInt("FullscreenPreference", 0);
         }
+        settingsText.text += $" LoadFullScreenSetting {PlayerPrefs.GetInt("FullscreenPreference") != 0}, ";
         return PlayerPrefs.GetInt("FullscreenPreference") != 0;
+    }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
     }
 }
