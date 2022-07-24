@@ -1,13 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Settings : MonoBehaviour
 {
     [SerializeField] private Dropdown resolutionDropdown;
     [SerializeField] private Toggle fullScreenToggle;
     [SerializeField] private GameObject exitButton;
-    
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private AudioSource musicSource, publicEffectsSourse, localEffectsSourse;
+    [SerializeField] private Slider volumeSlider;
+
+    private void Update()
+    {
+        SetVolume();
+    }
+
     private Resolution[] _resolutions;
     
     public void Awake()
@@ -51,7 +58,6 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetInt("FullscreenPreference", fullScreenValue);
     }
 
-
     private void LoadSettings()
     {
         resolutionDropdown.value = LoadResolutionSetting();
@@ -78,8 +84,37 @@ public class Settings : MonoBehaviour
         return PlayerPrefs.GetInt("FullscreenPreference") != 0;
     }
 
+    private void SetVolume()
+    {
+        musicSource.volume = volumeSlider.value;
+    }
+
+    public void MusicPause()
+    {
+        musicSource.Pause();
+    }
+
+    public void MusicUnPause()
+    {
+        musicSource.UnPause();
+    }
+
+      public void SoundUnPause()
+    {
+        publicEffectsSourse.UnPause();
+        localEffectsSourse.UnPause();
+
+    }
+
+    public void SoundPause()
+    {
+        publicEffectsSourse.Pause();
+        localEffectsSourse.Pause();
+    }
+
     public void QuitApplication()
     {
         Application.Quit();
     }
+
 }
