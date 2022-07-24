@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameLogic : MonoBehaviour
 {
     [SerializeField] private List<Act> _acts;
-    [SerializeField] private AudioSource _musicAudioSource;
+    [SerializeField] private Settings _settings;
+    [SerializeField] private AudioClip audioClip;
 
     private void Start()
     {
@@ -15,6 +16,12 @@ public class GameLogic : MonoBehaviour
     public void StartPlay()
     {
         StartActs(_acts, 0);
+    }
+
+    public void TestSound()
+    {
+        _settings.mainThemeSource.clip = audioClip;
+        _settings.mainThemeSource.Play();
     }
 
     private void StartActs(List<Act> acts, int startActNum)
@@ -35,16 +42,22 @@ public class GameLogic : MonoBehaviour
         acts[startActNum].StartAct(() =>
         {
             TryStartNextAct(_acts, startActNum+1);
+            StopPlaySound();
             acts[startActNum].gameObject.SetActive(false);
         });
         PlayMusicBackground(acts, startActNum);
     }
 
+    private void StopPlaySound()
+    {
+        _settings.soundThemeSource.clip = null;
+    }
+
     private void PlayMusicBackground(List<Act> acts, int startActNum)
     {
-        if (_musicAudioSource.clip == acts[startActNum]._actMusic) return;
-        _musicAudioSource.clip = acts[startActNum]._actMusic;
-        _musicAudioSource.Play();
+        if (_settings.mainThemeSource.clip == acts[startActNum]._actMusic) return;
+        _settings.mainThemeSource.clip = acts[startActNum]._actMusic;
+        _settings.mainThemeSource.Play();
     }
 
 

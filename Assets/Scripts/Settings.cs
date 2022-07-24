@@ -7,13 +7,8 @@ public class Settings : MonoBehaviour
     [SerializeField] private Toggle fullScreenToggle;
     [SerializeField] private GameObject exitButton;
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private AudioSource musicSource, publicEffectsSourse, localEffectsSourse;
+    [SerializeField] public AudioSource mainThemeSource, soundThemeSource, soundUISourсe;
     [SerializeField] private Slider volumeSlider;
-
-    private void Update()
-    {
-        SetVolume();
-    }
 
     private Resolution[] _resolutions;
     
@@ -38,6 +33,7 @@ public class Settings : MonoBehaviour
 #endif
     }
     
+
     public void SetFullscreen()
     {
         Screen.fullScreen = fullScreenToggle.isOn ;
@@ -84,32 +80,37 @@ public class Settings : MonoBehaviour
         return PlayerPrefs.GetInt("FullscreenPreference") != 0;
     }
 
-    private void SetVolume()
+    public void SetVolume()
     {
-        musicSource.volume = volumeSlider.value;
+        mainThemeSource.volume = volumeSlider.value - 0.1f;
+        soundThemeSource.volume = volumeSlider.value - 0.2f;
+        soundUISourсe.volume = volumeSlider.value;
     }
-
-    public void MusicPause()
+    
+    public void ChangeMusicState()
     {
-        musicSource.Pause();
+        if (mainThemeSource.mute)
+        {
+            mainThemeSource.mute = false;
+            soundUISourсe.mute = false;
+        }
+        else
+        {
+            mainThemeSource.mute = true;
+            soundUISourсe.mute = true;
+        }
     }
-
-    public void MusicUnPause()
+    
+    public void ChangeSoundState()
     {
-        musicSource.UnPause();
-    }
-
-      public void SoundUnPause()
-    {
-        publicEffectsSourse.UnPause();
-        localEffectsSourse.UnPause();
-
-    }
-
-    public void SoundPause()
-    {
-        publicEffectsSourse.Pause();
-        localEffectsSourse.Pause();
+        if (soundUISourсe.mute)
+        {
+            soundUISourсe.mute = false;
+        }
+        else
+        { 
+            soundUISourсe.mute = true;
+        }
     }
 
     public void QuitApplication()
