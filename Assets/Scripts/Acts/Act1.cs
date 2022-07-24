@@ -6,6 +6,7 @@ public class Act1 : Act
 {
     public override void StartAct(Action endCallback)
     {
+        Debug.Log("Music 'Theme Act 1'continue");
         StartCoroutine(ActOne(endCallback));
     }
 
