@@ -1,12 +1,16 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameLogic : MonoBehaviour
 {
     [SerializeField] private List<Act> _acts;
     [SerializeField] private Settings _settings;
     [SerializeField] private AudioClip audioClip;
+
+    private Act _currentAct;
 
     private void Start()
     {
@@ -15,31 +19,38 @@ public class GameLogic : MonoBehaviour
 
     public void StartPlay()
     {
-        StartActs(_acts, 0);
+        StartFirstActs( 0);
     }
 
-    private void StartActs(List<Act> acts, int startActNum)
+    private void StartFirstActs(int startActNum)
     {
-        acts[startActNum].gameObject.SetActive(true);
-        acts[startActNum].StartAct(() =>
+        _currentAct = _acts[startActNum];
+        _currentAct.gameObject.SetActive(true);
+        _currentAct.StartAct(() =>
         {
-            TryStartNextAct(_acts, startActNum+1);
-            acts[startActNum].gameObject.SetActive(false);
+            StartNextAct(startActNum+1);
         });
-        PlayMusicBackground(acts, startActNum);
+        PlayMusicBackground(_currentAct);
     }
 
-    private void TryStartNextAct(List<Act> acts, int startActNum)
+    public void StartNextAct(int actNum)
     {
-        if (acts.Count <= startActNum) return;
-        acts[startActNum].gameObject.SetActive(true);
-        acts[startActNum].StartAct(() =>
+        _currentAct = _acts[actNum];
+        _currentAct.gameObject.SetActive(true);
+        _currentAct.StartAct(StopPlaySound);
+        PlayMusicBackground(_currentAct);
+    }
+    
+    public void StartNextAct(int actNum, UnityAction action)
+    {
+        _currentAct = _acts[actNum];
+        _currentAct.gameObject.SetActive(true);
+        _currentAct.StartAct(() =>
         {
-            TryStartNextAct(_acts, startActNum+1);
             StopPlaySound();
-            acts[startActNum].gameObject.SetActive(false);
+            action.Invoke();
         });
-        PlayMusicBackground(acts, startActNum);
+        PlayMusicBackground(_currentAct);
     }
 
     private void StopPlaySound()
@@ -47,10 +58,10 @@ public class GameLogic : MonoBehaviour
         _settings.soundThemeSource.clip = null;
     }
 
-    private void PlayMusicBackground(List<Act> acts, int startActNum)
+    private void PlayMusicBackground(Act act)
     {
-        if (_settings.mainThemeSource.clip == acts[startActNum]._actMusic) return;
-        _settings.mainThemeSource.clip = acts[startActNum]._actMusic;
+        if (_settings.mainThemeSource.clip == act._actMusic) return;
+        _settings.mainThemeSource.clip = act._actMusic;
         _settings.mainThemeSource.Play();
     }
 

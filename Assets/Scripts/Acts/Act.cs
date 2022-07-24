@@ -16,7 +16,7 @@ public class Act : MonoBehaviour
     [SerializeField] public List<Button> buttons;
     [SerializeField] public bool canTap;
     [SerializeField] public float speedTaping;
-    public Action onTapNext;
+    [SerializeField] public Settings settings;
     
     public virtual void StartAct(Action endCallback)
     {

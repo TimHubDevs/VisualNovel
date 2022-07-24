@@ -8,13 +8,12 @@ public class Act1 : Act
     public override void StartAct(Action endCallback)
     {
         Debug.Log("Music 'Theme Act 1'continue");
-        // buttons[0].onClick.AddListener(OnButtonCkick);
         StartCoroutine(ActOne(endCallback));
     }
 
     private void OnButtonCkick()
     {
-        onTapNext.Invoke();
+        
     }
 
     private IEnumerator ActOne(Action endCallback)
@@ -45,8 +44,8 @@ public class Act1 : Act
             // currentMessage = currentMessage.nextMessage[0];
             // text.text = "<b>Рятувальник: </b>" + currentMessage.text;
             // yield return new WaitForSeconds(5);
-            // Debug.Log("End Act 1");
-            // endCallback.Invoke();
+            Debug.Log("End Act 1");
+            endCallback.Invoke();
         }));
     }
 }
