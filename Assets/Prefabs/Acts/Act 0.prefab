@@ -758,7 +758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4459851291370828962
 RectTransform:
   m_ObjectHideFlags: 0
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _background: {fileID: 4459851290343170012}
   _id: 0
-  _actMusic: {fileID: 8300000, guid: 7cf4e3e842888d2499b28a75ec90ed3f, type: 3}
+  _actMusic: {fileID: 8300000, guid: d6d360f0ce5d4184fb7068c71ec2bd62, type: 3}
   _actSound: []
   _smoke: {fileID: 7345449938164113689}
   _foreground: {fileID: 7345449938568074691}

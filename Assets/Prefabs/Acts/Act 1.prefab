@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _background: {fileID: 8354017040721168183}
   _id: 1
-  _actMusic: {fileID: 8300000, guid: 7cf4e3e842888d2499b28a75ec90ed3f, type: 3}
+  _actMusic: {fileID: 8300000, guid: d6d360f0ce5d4184fb7068c71ec2bd62, type: 3}
   _actSound: []
 --- !u!1 &8354017040070296071
 GameObject:
@@ -338,14 +338,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 9ef8bce91e259bf4cb153b72c982d3e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
