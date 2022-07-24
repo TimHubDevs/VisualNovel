@@ -7,13 +7,10 @@ public class Settings : MonoBehaviour
     [SerializeField] private Toggle fullScreenToggle;
     [SerializeField] private GameObject exitButton;
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private AudioSource musicSource, publicEffectsSourse, localEffectsSourse;
+    [SerializeField] public AudioSource mainThemeSource, soundThemeSource, soundUISourсe;
     [SerializeField] private Slider volumeSlider;
-
-    private void Update()
-    {
-        SetVolume();
-    }
+    [SerializeField] private GameObject dashMusic;
+    [SerializeField] private GameObject dashSound;
 
     private Resolution[] _resolutions;
     
@@ -38,6 +35,7 @@ public class Settings : MonoBehaviour
 #endif
     }
     
+
     public void SetFullscreen()
     {
         Screen.fullScreen = fullScreenToggle.isOn ;
@@ -51,17 +49,33 @@ public class Settings : MonoBehaviour
         SaveSettings();
     }
 
+
     private void SaveSettings()
     {
         var fullScreenValue = fullScreenToggle.isOn ? 1 : 0;
+        var changeMusicState = mainThemeSource.mute ? 1 : 0;
+        var changeThemeSource = soundThemeSource.mute ? 1 : 0;
+        var changeSoundState = soundUISourсe.mute ? 1 : 0;
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", fullScreenValue);
+        PlayerPrefs.SetFloat("VolumeSlider", volumeSlider.value);
+        PlayerPrefs.SetInt("ChangeMusicState", changeMusicState);
+        PlayerPrefs.SetInt("ChangeThemeSource", changeThemeSource);
+        PlayerPrefs.SetInt("ChangeSoundState", changeSoundState);
     }
 
     private void LoadSettings()
     {
         resolutionDropdown.value = LoadResolutionSetting();
         fullScreenToggle.isOn = LoadFullScreenSetting();
+        volumeSlider.value = LoadVolumeSliderSetting();
+        mainThemeSource.mute = LoadChangeMusicState();
+        soundUISourсe.mute = LoadChangeSoundState();
+        soundThemeSource.mute = LoadChangeEventMusic();
+        dashMusic.SetActive(mainThemeSource.mute);
+        dashSound.SetActive(soundUISourсe.mute);
+        volumeSlider.gameObject.SetActive(!mainThemeSource.mute || !soundUISourсe.mute);
+        SetVolume();
         SetFullscreen();
         SetResolution();
     }
@@ -84,32 +98,82 @@ public class Settings : MonoBehaviour
         return PlayerPrefs.GetInt("FullscreenPreference") != 0;
     }
 
-    private void SetVolume()
+    private float LoadVolumeSliderSetting()
     {
-        musicSource.volume = volumeSlider.value;
+        if (PlayerPrefs.HasKey("VolumeSlider") == false)
+        {
+            PlayerPrefs.SetFloat("VolumeSlider", 1);
+        }
+        return PlayerPrefs.GetFloat("VolumeSlider");
     }
 
-    public void MusicPause()
+    private bool LoadChangeMusicState()
     {
-        musicSource.Pause();
+        if (PlayerPrefs.HasKey("ChangeMusicState") == false)
+        {
+            PlayerPrefs.SetInt("ChangeMusicState", 0);
+        }
+        return PlayerPrefs.GetInt("ChangeMusicState")!=0;
     }
 
-    public void MusicUnPause()
-    {
-        musicSource.UnPause();
+    private bool LoadChangeEventMusic() { 
+    if (PlayerPrefs.HasKey("ChangeThemeSource") == false)
+        {
+            PlayerPrefs.SetInt("ChangeThemeSource", 0);
+        }
+    return PlayerPrefs.GetInt("ChangeThemeSource")!=0;
     }
 
-      public void SoundUnPause()
+    private bool LoadChangeSoundState()
     {
-        publicEffectsSourse.UnPause();
-        localEffectsSourse.UnPause();
-
+        if (PlayerPrefs.HasKey("ChangeSoundState") == false)
+        {
+            PlayerPrefs.SetInt("ChangeSoundState", 0);
+        }
+        return PlayerPrefs.GetInt("ChangeSoundState")!=0;
     }
 
-    public void SoundPause()
+    public void SetVolume()
     {
-        publicEffectsSourse.Pause();
-        localEffectsSourse.Pause();
+        mainThemeSource.volume = volumeSlider.value - 0.1f;
+        soundThemeSource.volume = volumeSlider.value - 0.2f;
+        soundUISourсe.volume = volumeSlider.value;
+        SaveSettings();
+    }
+    
+    public void ChangeMusicState()
+    {
+        if (mainThemeSource.mute)
+        {
+            mainThemeSource.mute = false;
+            soundThemeSource.mute = false;
+        }
+        else
+        {
+            mainThemeSource.mute = true;
+            soundThemeSource.mute = true;
+        }
+        SaveSettings();
+        ChangeActiveVolumeSlider();
+    }
+    
+    public void ChangeSoundState()
+    {
+        if (soundUISourсe.mute)
+        {
+            soundUISourсe.mute = false;
+        }
+        else
+        { 
+            soundUISourсe.mute = true;
+        }
+        SaveSettings();
+        ChangeActiveVolumeSlider();
+    }
+
+   private void ChangeActiveVolumeSlider()
+    {
+        volumeSlider.gameObject.SetActive(!soundUISourсe.mute || !mainThemeSource.mute);
     }
 
     public void QuitApplication()
