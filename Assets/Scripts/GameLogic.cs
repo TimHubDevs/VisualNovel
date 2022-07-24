@@ -18,12 +18,6 @@ public class GameLogic : MonoBehaviour
         StartActs(_acts, 0);
     }
 
-    public void TestSound()
-    {
-        _settings.mainThemeSource.clip = audioClip;
-        _settings.mainThemeSource.Play();
-    }
-
     private void StartActs(List<Act> acts, int startActNum)
     {
         acts[startActNum].gameObject.SetActive(true);
