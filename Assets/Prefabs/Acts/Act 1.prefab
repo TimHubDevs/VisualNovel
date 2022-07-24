@@ -69,12 +69,15 @@ MonoBehaviour:
   _character: {fileID: 8354017041529616990}
   _id: 1
   _actMusic: {fileID: 8300000, guid: d6d360f0ce5d4184fb7068c71ec2bd62, type: 3}
-  _actSound: []
+  _actSound:
+  - {fileID: 8300000, guid: 64d1bb6d58f77d54c90cee45a42a2a09, type: 3}
   _messageModel: {fileID: 4108097748038955645, guid: 384ca91cc222a00489ea53079a2e8733, type: 3}
-  text: {fileID: 1920479470}
+  characterName: {fileID: 8123712880529842228}
+  characterSay: {fileID: 1920479470}
   buttons: []
   canTap: 0
   speedTaping: 0.1
+  settings: {fileID: 0}
 --- !u!1 &8354017040070296071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1134,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8354017039976541155}
     m_Modifications:
+    - target: {fileID: 695868411866637474, guid: 5c0a349ca36a2614f89109239ae59b85, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724881436282123386, guid: 5c0a349ca36a2614f89109239ae59b85, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8724881436966816873, guid: 5c0a349ca36a2614f89109239ae59b85, type: 3}
       propertyPath: m_Name
       value: Panel
@@ -1226,6 +1237,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8724881436966817174, guid: 5c0a349ca36a2614f89109239ae59b85, type: 3}
   m_PrefabInstance: {fileID: 8724881437649978518}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8123712880529842228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 695868411866637474, guid: 5c0a349ca36a2614f89109239ae59b85, type: 3}
+  m_PrefabInstance: {fileID: 8724881437649978518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1920479470 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8724881436282123384, guid: 5c0a349ca36a2614f89109239ae59b85, type: 3}

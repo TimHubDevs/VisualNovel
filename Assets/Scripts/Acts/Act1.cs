@@ -4,48 +4,67 @@ using UnityEngine;
 
 public class Act1 : Act
 {
-    private MessageModel currentMessage;
+    private MessageModel _currentMessage;
+    private bool _textFull;
+    private IEnumerator _currentCoroutine;
+    private Action _endCallback;
+    private string _fullCharacterSayText;
+    private int currentStep = 0;
+    
+    
     public override void StartAct(Action endCallback)
     {
-        Debug.Log("Music 'Theme Act 1'continue");
-        StartCoroutine(ActOne(endCallback));
+        StepZero();
+        _endCallback = endCallback;
     }
 
-    private void OnButtonCkick()
+    public void OnButtonClick()
     {
-        
-    }
-
-    private IEnumerator ActOne(Action endCallback)
-    {
-        canTap = false;
-        text.text = String.Empty;
-        Debug.Log("Sound 'Бубоніння людей. Тріск від пожежі. Тривожна музика'");
-        yield return new WaitForSeconds(3);
-        currentMessage = _messageModel;
-        _character.sprite = currentMessage.character;
-        string fullText = currentMessage.text;
-        StartCoroutine(ShowText(fullText, "<b>Рятувальник: </b>", () =>
+        if (CheckIsRoutinePlay())
         {
-            text.text += "\n";
-            Debug.Log("end text1");
-            currentMessage = currentMessage.nextMessage[0];
-            fullText = currentMessage.text;
-            StartCoroutine(ShowText(fullText, "<b>ГГ: </b>", () =>
-            {
-                text.text += "\n";
-                Debug.Log("end text 2");
-            }));
-            //animate after show next
-            // yield return new WaitForSeconds(2);
-            // currentMessage = currentMessage.nextMessage[0];
-            // text.text = "<b>ГГ: </b>" + currentMessage.text;
-            // yield return new WaitForSeconds(2);
-            // currentMessage = currentMessage.nextMessage[0];
-            // text.text = "<b>Рятувальник: </b>" + currentMessage.text;
-            // yield return new WaitForSeconds(5);
-            Debug.Log("End Act 1");
-            endCallback.Invoke();
-        }));
+            StopCoroutine(_currentCoroutine);
+            characterSay.text = _fullCharacterSayText;
+            currentStep++;
+        }
+        else
+        {
+            NextStep();
+        }
+    }
+
+    private void NextStep()
+    {
+        switch (currentStep)
+        {
+            case 1:
+                //Step1
+                Debug.Log("Start step 1");
+                break;
+        }
+    }
+
+    private bool CheckIsRoutinePlay()
+    {
+        return !_textFull;
+    }
+
+    private void StepZero()
+    {
+        _textFull = false;
+        characterName.text = String.Empty;
+        characterSay.text = String.Empty;
+        settings.soundThemeSource.clip = _actSound[0];
+        settings.soundThemeSource.Play();
+        _currentMessage = _messageModel;
+        _character.sprite = _currentMessage.character;
+        characterName.text = "Рятувальник: ";
+        _fullCharacterSayText = _currentMessage.text;
+        _currentCoroutine = ShowText(_fullCharacterSayText, () =>
+        {
+            _textFull = true;
+            currentStep++;
+            Debug.Log("End Text 1");
+        });
+        StartCoroutine(_currentCoroutine);
     }
 }
