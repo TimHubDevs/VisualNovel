@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class GameLogic : MonoBehaviour
 {
@@ -18,37 +17,37 @@ public class GameLogic : MonoBehaviour
 
     public void StartPlay()
     {
-        StartFirstActs( 0);
+        StartFirstAct();
     }
 
-    private void StartFirstActs(int startActNum)
+    private void StartFirstAct()
+    {
+        StartAct(0);
+    }
+
+    private void StartAct(int startActNum)
     {
         _currentAct = _acts[startActNum];
         _currentAct.gameObject.SetActive(true);
         _currentAct.StartAct(() =>
         {
-            StartNextAct(startActNum+1);
+            StopPlaySound();
+            startActNum++;
+            if (_acts.Count <= startActNum)
+            {
+                //PlayMenuMusic
+                return;
+            }
+            StartNextAct(startActNum);
         });
         PlayMusicBackground(_currentAct);
     }
 
-    public void StartNextAct(int actNum)
+    private void StartNextAct(int actNum)
     {
         _currentAct = _acts[actNum];
         _currentAct.gameObject.SetActive(true);
         _currentAct.StartAct(StopPlaySound);
-        PlayMusicBackground(_currentAct);
-    }
-    
-    public void StartNextAct(int actNum, UnityAction action)
-    {
-        _currentAct = _acts[actNum];
-        _currentAct.gameObject.SetActive(true);
-        _currentAct.StartAct(() =>
-        {
-            StopPlaySound();
-            action.Invoke();
-        });
         PlayMusicBackground(_currentAct);
     }
 
@@ -68,6 +67,7 @@ public class GameLogic : MonoBehaviour
     public void LoadPlay()
     {
         // load and play act in save system
+        StartAct(1);
     }
     
     public void HideAct()

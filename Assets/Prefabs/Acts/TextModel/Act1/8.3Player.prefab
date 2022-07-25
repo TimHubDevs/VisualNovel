@@ -43,8 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0724d35f460c43145af6b0557bae65c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: " \u042F \u0443 \u0431\u043E\u043C\u0431\u043E\u0441\u0445\u043E\u0432\u0438\u0449\u0435.\\n"
+  id: 10
+  text: " \u042F \u0443 \u0431\u043E\u043C\u0431\u043E\u0441\u0445\u043E\u0432\u0438\u0449\u0435."
   characterType: 7
+  character: {fileID: 0}
   showCharacter: 0
   relationPoint: 0
   nextMessage:

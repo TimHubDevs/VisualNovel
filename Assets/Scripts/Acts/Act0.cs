@@ -36,6 +36,7 @@ public class Act0 : Act
         settings.soundThemeSource.Play();
         yield return new WaitForSeconds(2);
         Debug.Log("End Act 0");
+        gameObject.SetActive(false);
         endCallback.Invoke();
     }
 

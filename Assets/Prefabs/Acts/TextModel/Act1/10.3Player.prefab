@@ -43,9 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0724d35f460c43145af6b0557bae65c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 15
   text: "\u041E\u0442 \u043F\u0440\u0438\u0447\u0435\u043F\u0438\u043B\u0430\u0441\u044C..
-    \u042F\u043A \u0445\u043E\u0447\u0435\u0448.\\n"
+    \u042F\u043A \u0445\u043E\u0447\u0435\u0448."
   characterType: 7
+  character: {fileID: 0}
   showCharacter: 0
   relationPoint: 0
   nextMessage: []

@@ -43,8 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0724d35f460c43145af6b0557bae65c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: ...\n
+  id: 5
+  text: ....
   characterType: 1
+  character: {fileID: 0}
   showCharacter: 1
   relationPoint: 0
   nextMessage:

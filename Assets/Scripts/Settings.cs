@@ -50,34 +50,16 @@ public class Settings : MonoBehaviour
     private void SaveSettings()
     {
         var fullScreenValue = fullScreenToggle.isOn ? 1 : 0;
-        PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
-        PlayerPrefs.SetInt("FullscreenPreference", fullScreenValue);
+        PlayerPrefsSaveSystem.SetResolutionSetting(resolutionDropdown.value);
+        PlayerPrefsSaveSystem.SetFullscreenSetting(fullScreenValue);
     }
 
     private void LoadSettings()
     {
-        resolutionDropdown.value = LoadResolutionSetting();
-        fullScreenToggle.isOn = LoadFullScreenSetting();
+        resolutionDropdown.value = PlayerPrefsSaveSystem.LoadResolutionSetting();
+        fullScreenToggle.isOn = PlayerPrefsSaveSystem.LoadFullScreenSetting();
         SetFullscreen();
         SetResolution();
-    }
-
-    private int LoadResolutionSetting()
-    {
-        if (PlayerPrefs.HasKey("ResolutionPreference") == false)
-        {
-            PlayerPrefs.SetInt("ResolutionPreference", 0);
-        }
-        return PlayerPrefs.GetInt("ResolutionPreference");
-    }
-    
-    private bool LoadFullScreenSetting()
-    {
-        if (PlayerPrefs.HasKey("FullscreenPreference") == false)
-        {
-            PlayerPrefs.SetInt("FullscreenPreference", 0);
-        }
-        return PlayerPrefs.GetInt("FullscreenPreference") != 0;
     }
 
     public void SetVolume()

@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MessageModel : MonoBehaviour
 {
+    [SerializeField] public int id;
     [TextArea(7, 30)] [SerializeField] public string text;
     [SerializeField] public CharacterType characterType;
     [SerializeField] public Sprite character;

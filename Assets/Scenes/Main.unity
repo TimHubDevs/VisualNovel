@@ -422,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0724d35f460c43145af6b0557bae65c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   text: "\u0412\u0456\u0437\u044C\u043C\u0438 \u043C\u0435\u043D\u0435 \u0437\u0430
     \u0440\u0443\u043A\u0443.."
   characterType: 1
@@ -704,34 +705,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2001741545}
     m_Modifications:
-    - target: {fileID: 5373913038145881724, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5373913038145881724, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5373913038145881724, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 828371269}
-    - target: {fileID: 5373913038145881724, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5373913038145881724, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnButtonClick
-      objectReference: {fileID: 0}
-    - target: {fileID: 5373913038145881724, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Act1, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5373913038145881724, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8354017039976541154, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
       propertyPath: settings
       value: 
@@ -823,10 +796,6 @@ PrefabInstance:
     - target: {fileID: 8354017039976541164, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
       propertyPath: m_Name
       value: Act 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8354017039976541164, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be59c532bb137ac4db51a708e28a1835, type: 3}
