@@ -1,45 +1,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Settings : MonoBehaviour
 {
     [SerializeField] private Dropdown resolutionDropdown;
     [SerializeField] private Toggle fullScreenToggle;
+    [SerializeField] private GameObject exitButton;
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private Text settingsText;
+    [SerializeField] public AudioSource mainThemeSource, soundThemeSource, soundUISourсe;
+    [SerializeField] private Slider volumeSlider;
 
     private Resolution[] _resolutions;
     
     public void Awake()
     {
-        settingsText.text = $" Awake, ";
-        // settingsPanel.SetActive(true);
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         _resolutions = Screen.resolutions;
-        settingsText.text += $" _resolutions {_resolutions.Length}, ";
         for (int i = 0; i < _resolutions.Length; i++)
         {
             string option = _resolutions[i].width + "x" + _resolutions[i].height + " " + _resolutions[i].refreshRate + "Hz";
             options.Add(option);
-            settingsText.text += $" option {i} {option}, ";
         }
         
         resolutionDropdown.AddOptions(options);
-        settingsText.text += $" AddOptions {options.Count}, ";
         resolutionDropdown.RefreshShownValue();
         LoadSettings();
         SaveSettings();
 #if UNITY_WEBGL
         fullScreenToggle.gameObject.SetActive(false);
+        exitButton.SetActive(false);
 #endif
-        // settingsPanel.SetActive(false);
     }
     
+
     public void SetFullscreen()
     {
-        settingsText.text += $" SetFullscreen {fullScreenToggle.isOn}, ";
         Screen.fullScreen = fullScreenToggle.isOn ;
         SaveSettings();
     }
@@ -47,7 +43,6 @@ public class Settings : MonoBehaviour
     public void SetResolution()
     {
         Resolution resolution = _resolutions[resolutionDropdown.value];
-        settingsText.text += $" SetResolution {resolution.width}*{resolution.height}, ";
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         SaveSettings();
     }
@@ -55,42 +50,54 @@ public class Settings : MonoBehaviour
     private void SaveSettings()
     {
         var fullScreenValue = fullScreenToggle.isOn ? 1 : 0;
-        PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
-        PlayerPrefs.SetInt("FullscreenPreference", fullScreenValue);
+        PlayerPrefsSaveSystem.SetResolutionSetting(resolutionDropdown.value);
+        PlayerPrefsSaveSystem.SetFullscreenSetting(fullScreenValue);
     }
-
 
     private void LoadSettings()
     {
-        settingsText.text += $" LoadSettings, ";
-        resolutionDropdown.value = LoadResolutionSetting();
-        fullScreenToggle.isOn = LoadFullScreenSetting();
+        resolutionDropdown.value = PlayerPrefsSaveSystem.LoadResolutionSetting();
+        fullScreenToggle.isOn = PlayerPrefsSaveSystem.LoadFullScreenSetting();
         SetFullscreen();
         SetResolution();
     }
 
-    private int LoadResolutionSetting()
+    public void SetVolume()
     {
-        if (PlayerPrefs.HasKey("ResolutionPreference") == false)
-        {
-            PlayerPrefs.SetInt("ResolutionPreference", 0);
-        }
-        settingsText.text += $" LoadResolutionSetting {PlayerPrefs.GetInt("ResolutionPreference")}, ";
-        return PlayerPrefs.GetInt("ResolutionPreference");
+        mainThemeSource.volume = volumeSlider.value - 0.1f;
+        soundThemeSource.volume = volumeSlider.value - 0.2f;
+        soundUISourсe.volume = volumeSlider.value;
     }
     
-    private bool LoadFullScreenSetting()
+    public void ChangeMusicState()
     {
-        if (PlayerPrefs.HasKey("FullscreenPreference") == false)
+        if (mainThemeSource.mute)
         {
-            PlayerPrefs.SetInt("FullscreenPreference", 0);
+            mainThemeSource.mute = false;
+            soundUISourсe.mute = false;
         }
-        settingsText.text += $" LoadFullScreenSetting {PlayerPrefs.GetInt("FullscreenPreference") != 0}, ";
-        return PlayerPrefs.GetInt("FullscreenPreference") != 0;
+        else
+        {
+            mainThemeSource.mute = true;
+            soundUISourсe.mute = true;
+        }
+    }
+    
+    public void ChangeSoundState()
+    {
+        if (soundUISourсe.mute)
+        {
+            soundUISourсe.mute = false;
+        }
+        else
+        { 
+            soundUISourсe.mute = true;
+        }
     }
 
     public void QuitApplication()
     {
         Application.Quit();
     }
+
 }
