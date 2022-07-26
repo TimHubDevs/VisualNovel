@@ -20,6 +20,46 @@ public static class PlayerPrefsSaveSystem
         return PlayerPrefs.GetInt("FullscreenPreference") != 0;
     }
 
+    public static float LoadVolumeSliderSetting()
+    {
+        if (PlayerPrefs.HasKey("VolumeSlider") == false)
+        {
+            PlayerPrefs.SetFloat("VolumeSlider", 1);
+        }
+
+        return PlayerPrefs.GetFloat("VolumeSlider");
+    }
+
+    public static bool LoadChangeMusicState()
+    {
+        if (PlayerPrefs.HasKey("SaveChangeMusicState") == false)
+        {
+            PlayerPrefs.SetInt("SaveChangeMusicState", 0);
+        }
+
+        return PlayerPrefs.GetInt("SaveChangeMusicState") != 0;
+    }
+
+    public static bool LoadChangeEventMusic()
+    {
+        if (PlayerPrefs.HasKey("SaveChangeThemeSource") == false)
+        {
+            PlayerPrefs.SetInt("SaveChangeThemeSource", 0);
+        }
+
+        return PlayerPrefs.GetInt("SaveChangeThemeSource") != 0;
+    }
+
+    public static bool LoadChangeSoundState()
+    {
+        if (PlayerPrefs.HasKey("SaveChangeSoundState") == false)
+        {
+            PlayerPrefs.SetInt("SaveChangeSoundState", 0);
+        }
+
+        return PlayerPrefs.GetInt("SaveChangeSoundState") != 0;
+    }
+    
     public static int LoadPlayerRelationSheepPoint()
     {
         if (PlayerPrefs.HasKey("PlayerPoint") == false)
@@ -43,4 +83,25 @@ public static class PlayerPrefsSaveSystem
     {
         PlayerPrefs.SetInt("PlayerPoint", point);
     }
+    
+    public static void SetVolumeSliderValue(float value)
+    {
+        PlayerPrefs.SetFloat("VolumeSlider", value);
+    }
+    
+    public static void SetMusicState(int state)
+    {
+        PlayerPrefs.SetInt("SaveChangeMusicState", state);
+    }
+    
+    public static void SetThemeSource(int state)
+    {
+        PlayerPrefs.SetInt("SaveChangeThemeSource", state);
+    }
+    
+    public static void SetSoundState(int state)
+    {
+        PlayerPrefs.SetInt("SaveChangeSoundState", state);
+    }
+    
 }
