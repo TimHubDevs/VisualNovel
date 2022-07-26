@@ -10,6 +10,7 @@ public class Act0 : Act
     [SerializeField] public Image _foreground;
     public override void StartAct(Action endCallback)
     {
+        base.StartAct(endCallback);
         StartCoroutine(ActZero(endCallback));
     }
 

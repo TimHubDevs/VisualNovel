@@ -7,11 +7,11 @@ public class Act1 : Act
     private bool _textFull;
     private IEnumerator _currentCoroutine;
     private Action _endCallback;
-    private int currentStep = 0;
     
     
     public override void StartAct(Action endCallback)
     {
+        base.StartAct(endCallback);
         StepZero();
         _endCallback = endCallback;
     }
@@ -36,7 +36,6 @@ public class Act1 : Act
                 isActEnd = true;
                 return;
             }
-            Debug.Log($"{_currentMessage.id} id not null");
             currentStep = _currentMessage.nextMessage[0].id;
         }
         else

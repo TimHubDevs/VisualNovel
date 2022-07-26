@@ -20,13 +20,17 @@ public class Act : MonoBehaviour
     [SerializeField] public float speedTaping;
     [SerializeField] public Settings settings;
     [SerializeField] public GameObject choosePanel;
+    protected int currentStep = 0;
     protected bool isActEnd;
     
     public virtual void StartAct(Action endCallback)
     {
+        _currentMessage = _startMessage;
+        isActEnd = false;
+        currentStep = 0;
     }
 
-    public IEnumerator ShowText(string fullText, Action endCallback)
+    protected IEnumerator ShowText(string fullText, Action endCallback)
     {
         for (int i = 0; i < fullText.Length; i++)
         {
@@ -62,6 +66,7 @@ public class Act : MonoBehaviour
             choosePanel.SetActive(false);
             buttons[0].gameObject.SetActive(true);
             finalMessage.Invoke(_currentMessage.nextMessage[0].nextMessage[0]);
+            ClearButtonsListener();
         });
         buttons[2].onClick.AddListener(()=>
         {
@@ -69,6 +74,7 @@ public class Act : MonoBehaviour
             choosePanel.SetActive(false);
             buttons[0].gameObject.SetActive(true);
             finalMessage.Invoke(_currentMessage.nextMessage[1].nextMessage[0]);
+            ClearButtonsListener();
         });
         buttons[3].onClick.AddListener(()=>
         {
@@ -76,7 +82,15 @@ public class Act : MonoBehaviour
             choosePanel.SetActive(false);
             buttons[0].gameObject.SetActive(true);
             finalMessage.Invoke(_currentMessage.nextMessage[2].nextMessage[0]);
+            ClearButtonsListener();
         });
+    }
+
+    private void ClearButtonsListener()
+    {
+        buttons[1].onClick.RemoveAllListeners();
+        buttons[2].onClick.RemoveAllListeners();
+        buttons[3].onClick.RemoveAllListeners();
     }
 
     private void AddPoint(int point)
