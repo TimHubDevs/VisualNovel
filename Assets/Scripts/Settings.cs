@@ -7,10 +7,10 @@ public class Settings : MonoBehaviour
     [SerializeField] private Toggle fullScreenToggle;
     [SerializeField] private GameObject exitButton;
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] public AudioSource mainThemeSource, soundThemeSource, soundUISourсe;
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private GameObject dashMusic;
     [SerializeField] private GameObject dashSound;
+    public AudioSource mainThemeSource, soundThemeSource, soundUISourсe;
 
     private Resolution[] _resolutions;
     
@@ -59,19 +59,19 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", fullScreenValue);
         PlayerPrefs.SetFloat("VolumeSlider", volumeSlider.value);
-        PlayerPrefs.SetInt("ChangeMusicState", changeMusicState);
-        PlayerPrefs.SetInt("ChangeThemeSource", changeThemeSource);
-        PlayerPrefs.SetInt("ChangeSoundState", changeSoundState);
+        PlayerPrefs.SetInt("SaveChangeMusicState", changeMusicState);
+        PlayerPrefs.SetInt("SaveChangeThemeSource", changeThemeSource);
+        PlayerPrefs.SetInt("SaveChangeSoundState", changeSoundState);
     }
 
     private void LoadSettings()
     {
         resolutionDropdown.value = LoadResolutionSetting();
         fullScreenToggle.isOn = LoadFullScreenSetting();
-        volumeSlider.value = LoadVolumeSliderSetting();
         mainThemeSource.mute = LoadChangeMusicState();
         soundUISourсe.mute = LoadChangeSoundState();
         soundThemeSource.mute = LoadChangeEventMusic();
+        volumeSlider.value = LoadVolumeSliderSetting();
         dashMusic.SetActive(mainThemeSource.mute);
         dashSound.SetActive(soundUISourсe.mute);
         volumeSlider.gameObject.SetActive(!mainThemeSource.mute || !soundUISourсe.mute);
@@ -109,28 +109,28 @@ public class Settings : MonoBehaviour
 
     private bool LoadChangeMusicState()
     {
-        if (PlayerPrefs.HasKey("ChangeMusicState") == false)
+        if (PlayerPrefs.HasKey("SaveChangeMusicState") == false)
         {
-            PlayerPrefs.SetInt("ChangeMusicState", 0);
+            PlayerPrefs.SetInt("SaveChangeMusicState", 0);
         }
-        return PlayerPrefs.GetInt("ChangeMusicState")!=0;
+        return PlayerPrefs.GetInt("SaveChangeMusicState") !=0;
     }
 
     private bool LoadChangeEventMusic() { 
-    if (PlayerPrefs.HasKey("ChangeThemeSource") == false)
+    if (PlayerPrefs.HasKey("SaveChangeThemeSource") == false)
         {
-            PlayerPrefs.SetInt("ChangeThemeSource", 0);
+            PlayerPrefs.SetInt("SaveChangeThemeSource", 0);
         }
-    return PlayerPrefs.GetInt("ChangeThemeSource")!=0;
+    return PlayerPrefs.GetInt("SaveChangeThemeSource") !=0;
     }
 
     private bool LoadChangeSoundState()
     {
-        if (PlayerPrefs.HasKey("ChangeSoundState") == false)
+        if (PlayerPrefs.HasKey("SaveChangeSoundState") == false)
         {
-            PlayerPrefs.SetInt("ChangeSoundState", 0);
+            PlayerPrefs.SetInt("SaveChangeSoundState", 0);
         }
-        return PlayerPrefs.GetInt("ChangeSoundState")!=0;
+        return PlayerPrefs.GetInt("SaveChangeSoundState") !=0;
     }
 
     public void SetVolume()

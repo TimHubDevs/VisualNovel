@@ -5,7 +5,6 @@ public class MusicButton : MonoBehaviour
 {
     [SerializeField] private Button _button;
     [SerializeField] private GameObject _dash;
-    [SerializeField] private GameObject _volumeSlider;
    
     public void PushMusicButton()
     {
