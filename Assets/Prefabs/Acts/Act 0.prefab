@@ -810,18 +810,22 @@ MonoBehaviour:
   _id: 0
   _actMusic: {fileID: 8300000, guid: d6d360f0ce5d4184fb7068c71ec2bd62, type: 3}
   _actSound:
+  - {fileID: 8300000, guid: fb33ece93daeb8c4f8e30a26025b8176, type: 3}
   - {fileID: 8300000, guid: cce035bd219607843a732d6695f4c336, type: 3}
   - {fileID: 8300000, guid: 5a571843cae005d46a2a98f785540ed9, type: 3}
   - {fileID: 8300000, guid: 275435119ef0ffc46882f626535cc7e8, type: 3}
   - {fileID: 8300000, guid: 7784a8a697d5a9142b28f3c9bbfd3c20, type: 3}
   - {fileID: 8300000, guid: 2a8e7adbc72f6e04ba137c59205b3429, type: 3}
   - {fileID: 8300000, guid: eafb85b0e06a05a408b6c173440d80f9, type: 3}
-  _messageModel: {fileID: 0}
-  text: {fileID: 0}
+  _startMessage: {fileID: 0}
+  _currentMessage: {fileID: 0}
+  characterName: {fileID: 0}
+  characterSay: {fileID: 0}
   buttons: []
   canTap: 0
   speedTaping: 0
   settings: {fileID: 0}
+  choosePanel: {fileID: 0}
   _smoke: {fileID: 7345449938164113689}
   _foreground: {fileID: 7345449938568074691}
 --- !u!1 &4459851291589087330
@@ -1115,7 +1119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8301887, g: 0.46160626, b: 0.003915994, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
