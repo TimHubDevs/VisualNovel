@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Act1 : Act
+public class Act2 : Act
 {
     private bool _textFull;
     private IEnumerator _currentCoroutine;
@@ -12,44 +12,27 @@ public class Act1 : Act
     public override void StartAct(Action endCallback)
     {
         base.StartAct(endCallback);
-        StepZero();
-        StartCoroutine(ActEnd(endCallback));
-    }
-
-    private IEnumerator ActEnd(Action endCallback)
-    {
-        yield return new WaitUntil((() => isActEnd));
-        Debug.Log("End Act 1");
-        gameObject.SetActive(false);
-        endCallback.Invoke();
+        // StepZero();
     }
 
     public void OnButtonClick()
     {
-        if (!_textFull)
+        if (CheckIsRoutinePlay())
         {
-            if (CheckIsRoutinePlay())
-            {
-                StopCoroutine(_currentCoroutine);
-                characterSay.text = _currentMessage.text;
-                _textFull = true;
-            }
-            else
-            {
-                NextStep();
-            }
-        }
-        else
-        {
+            StopCoroutine(_currentCoroutine);
+            characterSay.text = _currentMessage.text;
+            _textFull = true;
             if (_currentMessage.nextMessage.Count == 0)
             {
                 isActEnd = true;
                 return;
             }
             currentStep = _currentMessage.nextMessage[0].id;
+        }
+        else
+        {
             NextStep();
         }
-        
     }
 
     private void NextStep()
@@ -283,6 +266,7 @@ public class Act1 : Act
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
+            isActEnd = true;
             Debug.Log("End Text 12");
         });
         StartCoroutine(_currentCoroutine);
@@ -329,6 +313,7 @@ public class Act1 : Act
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
+            isActEnd = true;
             Debug.Log("End Text 15");
         });
         StartCoroutine(_currentCoroutine);
@@ -344,6 +329,7 @@ public class Act1 : Act
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
+            isActEnd = true;
             Debug.Log("End Text 16");
         });
         StartCoroutine(_currentCoroutine);

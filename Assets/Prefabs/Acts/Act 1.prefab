@@ -77,7 +77,7 @@ MonoBehaviour:
   - {fileID: 4504399666013942445}
   - {fileID: 7605424999339277661}
   canTap: 0
-  speedTaping: 0.1
+  tapingDelay: 0.1
   settings: {fileID: 0}
   choosePanel: {fileID: 9067837459568639180}
 --- !u!1 &8354017040721168177

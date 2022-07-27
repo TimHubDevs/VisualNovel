@@ -18,7 +18,7 @@ public class Act : MonoBehaviour
     [SerializeField] public Text characterSay;
     [SerializeField] public List<Button> buttons;
     [SerializeField] public bool canTap;
-    [SerializeField] public float speedTaping;
+    [SerializeField] public float tapingDelay;
     [SerializeField] public Settings settings;
     [SerializeField] public GameObject choosePanel;
     protected int currentStep = 0;
@@ -37,7 +37,7 @@ public class Act : MonoBehaviour
         {
             var currentText = fullText.Substring(0, i);
             characterSay.text = currentText;
-            yield return new WaitForSeconds(speedTaping);
+            yield return new WaitForSeconds(tapingDelay);
         }
         endCallback.Invoke();
     }

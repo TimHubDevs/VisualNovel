@@ -6,7 +6,6 @@ public class GameLogic : MonoBehaviour
 {
     [SerializeField] private List<Act> _acts;
     [SerializeField] private Settings _settings;
-    [SerializeField] private AudioClip audioClip;
 
     private Act _currentAct;
 
