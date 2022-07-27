@@ -46,7 +46,7 @@ MonoBehaviour:
   id: 5
   text: ....
   characterType: 1
-  character: {fileID: 0}
+  character: {fileID: 21300000, guid: 343b60333690f0b42b6354d7242911f5, type: 3}
   showCharacter: 1
   relationPoint: 0
   nextMessage:

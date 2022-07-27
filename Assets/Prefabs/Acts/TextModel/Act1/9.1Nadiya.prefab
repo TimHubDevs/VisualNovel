@@ -50,7 +50,7 @@ MonoBehaviour:
     \u0437\u0440\u0443\u0439\u043D\u043E\u0432\u0430\u043D\u043E.. \u0422\u0456\u043B\u044C\u043A\u0438
     \u043C\u0438 \u0437 \u043A\u0432\u0456\u0442\u043E\u0447\u043A\u0443\u044E \u0432\u0440\u044F\u0442\u0443\u0432\u0430\u043B\u0438\u0441\u044C."
   characterType: 1
-  character: {fileID: 0}
+  character: {fileID: 21300000, guid: 343b60333690f0b42b6354d7242911f5, type: 3}
   showCharacter: 1
   relationPoint: 0
   nextMessage:

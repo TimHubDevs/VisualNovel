@@ -48,7 +48,7 @@ MonoBehaviour:
     \u041C\u0438 \u0456 \u0442\u0430\u043A \u0440\u043E\u0431\u0438\u043C\u043E \u0432\u0441\u0435
     \u043C\u043E\u0436\u043B\u0438\u0432\u0435!\n"
   characterType: 6
-  character: {fileID: 0}
+  character: {fileID: 21300000, guid: bb2fe2170c3748d4a8ebc6561573be56, type: 3}
   showCharacter: 1
   relationPoint: 0
   nextMessage:
