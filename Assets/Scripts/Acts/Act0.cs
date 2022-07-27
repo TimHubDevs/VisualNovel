@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,15 +38,5 @@ public class Act0 : Act
         Debug.Log("End Act 0");
         gameObject.SetActive(false);
         endCallback.Invoke();
-    }
-
-    private void AnimateImageShow(Image image, int duration)
-    {
-        image.gameObject.SetActive(true);
-        var imageColor = image.color;
-        imageColor.a = 0;
-        image.color = imageColor;
-        imageColor.a = 1;
-        DOTween.To(() => image.color, value => image.color = value, imageColor, duration);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -98,5 +99,15 @@ public class Act : MonoBehaviour
         var currentPoint = PlayerPrefsSaveSystem.LoadPlayerRelationSheepPoint();
         currentPoint += point;
         PlayerPrefsSaveSystem.SetPlayerRelationSheepPoint(currentPoint);
+    }
+    
+    protected void AnimateImageShow(Image image, int duration)
+    {
+        image.gameObject.SetActive(true);
+        var imageColor = image.color;
+        imageColor.a = 0;
+        image.color = imageColor;
+        imageColor.a = 1;
+        DOTween.To(() => image.color, value => image.color = value, imageColor, duration);
     }
 }
