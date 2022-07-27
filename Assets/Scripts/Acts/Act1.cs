@@ -4,55 +4,13 @@ using UnityEngine;
 
 public class Act1 : Act
 {
-    private bool _textFull;
-    private IEnumerator _currentCoroutine;
-    private Action _endCallback;
-    
-    
     public override void StartAct(Action endCallback)
     {
         base.StartAct(endCallback);
         StepZero();
-        StartCoroutine(ActEnd(endCallback));
     }
 
-    private IEnumerator ActEnd(Action endCallback)
-    {
-        yield return new WaitUntil((() => isActEnd));
-        Debug.Log("End Act 1");
-        gameObject.SetActive(false);
-        endCallback.Invoke();
-    }
-
-    public void OnButtonClick()
-    {
-        if (!_textFull)
-        {
-            if (CheckIsRoutinePlay())
-            {
-                StopCoroutine(_currentCoroutine);
-                characterSay.text = _currentMessage.text;
-                _textFull = true;
-            }
-            else
-            {
-                NextStep();
-            }
-        }
-        else
-        {
-            if (_currentMessage.nextMessage.Count == 0)
-            {
-                isActEnd = true;
-                return;
-            }
-            currentStep = _currentMessage.nextMessage[0].id;
-            NextStep();
-        }
-        
-    }
-
-    private void NextStep()
+    protected override void NextStep()
     {
         switch (currentStep)
         {
@@ -99,11 +57,6 @@ public class Act1 : Act
                 StepSixteen();
                 break;
         }
-    }
-
-    private bool CheckIsRoutinePlay()
-    {
-        return !_textFull;
     }
 
     private void StepZero()
