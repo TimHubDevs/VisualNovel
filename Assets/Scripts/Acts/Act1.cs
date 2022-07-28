@@ -1,50 +1,15 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class Act1 : Act
 {
-    private bool _textFull;
-    private IEnumerator _currentCoroutine;
-    private Action _endCallback;
-    
-    
     public override void StartAct(Action endCallback)
     {
         base.StartAct(endCallback);
         StepZero();
-        _endCallback = endCallback;
     }
 
-    public void OnButtonClick()
-    {
-        if (isActEnd)
-        {
-            Debug.Log("End Act 1");
-            gameObject.SetActive(false);
-            _endCallback.Invoke();
-            return;
-        }
-        
-        if (CheckIsRoutinePlay())
-        {
-            StopCoroutine(_currentCoroutine);
-            characterSay.text = _currentMessage.text;
-            _textFull = true;
-            if (_currentMessage.nextMessage.Count == 0)
-            {
-                isActEnd = true;
-                return;
-            }
-            currentStep = _currentMessage.nextMessage[0].id;
-        }
-        else
-        {
-            NextStep();
-        }
-    }
-
-    private void NextStep()
+    protected override void NextStep()
     {
         switch (currentStep)
         {
@@ -91,11 +56,6 @@ public class Act1 : Act
                 StepSixteen();
                 break;
         }
-    }
-
-    private bool CheckIsRoutinePlay()
-    {
-        return !_textFull;
     }
 
     private void StepZero()
@@ -275,7 +235,6 @@ public class Act1 : Act
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
-            isActEnd = true;
             Debug.Log("End Text 12");
         });
         StartCoroutine(_currentCoroutine);
@@ -322,7 +281,6 @@ public class Act1 : Act
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
-            isActEnd = true;
             Debug.Log("End Text 15");
         });
         StartCoroutine(_currentCoroutine);
@@ -338,7 +296,6 @@ public class Act1 : Act
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
-            isActEnd = true;
             Debug.Log("End Text 16");
         });
         StartCoroutine(_currentCoroutine);

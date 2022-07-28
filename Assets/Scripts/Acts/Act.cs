@@ -18,17 +18,59 @@ public class Act : MonoBehaviour
     [SerializeField] public Text characterSay;
     [SerializeField] public List<Button> buttons;
     [SerializeField] public bool canTap;
-    [SerializeField] public float speedTaping;
+    [SerializeField] public float tapingDelay;
     [SerializeField] public Settings settings;
     [SerializeField] public GameObject choosePanel;
-    protected int currentStep = 0;
-    protected bool isActEnd;
     
+    protected int currentStep = 0;
+    protected bool _textFull;
+    protected IEnumerator _currentCoroutine;
+    
+    private bool isActEnd;
+
     public virtual void StartAct(Action endCallback)
     {
         _currentMessage = _startMessage;
         isActEnd = false;
         currentStep = 0;
+        StartCoroutine(ActEnd(endCallback));
+    }
+    
+    protected virtual void OnButtonClick()
+    {
+        if (CheckIsRoutinePlay())
+        {
+            StopCoroutine(_currentCoroutine);
+            characterSay.text = _currentMessage.text;
+            _textFull = true;
+        }
+        else
+        {
+            if (_currentMessage.nextMessage.Count == 0)
+            {
+                isActEnd = true;
+                return;
+            }
+            currentStep = _currentMessage.nextMessage[0].id;
+            NextStep();
+        }
+    }
+    
+    private bool CheckIsRoutinePlay()
+    {
+        return !_textFull;
+    }
+    
+    protected virtual void NextStep()
+    {
+    }
+
+    private IEnumerator ActEnd(Action endCallback)
+    {
+        yield return new WaitUntil((() => isActEnd));
+        Debug.Log("End Act");
+        gameObject.SetActive(false);
+        endCallback.Invoke();
     }
 
     protected IEnumerator ShowText(string fullText, Action endCallback)
@@ -37,7 +79,7 @@ public class Act : MonoBehaviour
         {
             var currentText = fullText.Substring(0, i);
             characterSay.text = currentText;
-            yield return new WaitForSeconds(speedTaping);
+            yield return new WaitForSeconds(tapingDelay);
         }
         endCallback.Invoke();
     }
