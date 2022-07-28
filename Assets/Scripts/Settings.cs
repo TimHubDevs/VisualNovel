@@ -25,13 +25,18 @@ public class Settings : MonoBehaviour
             string option = _resolutions[i].width + "x" + _resolutions[i].height + " " + _resolutions[i].refreshRate + "Hz";
             options.Add(option);
         }
-
+       
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
+#if UNITY_WEBGL
+        int resolutionCoefficient = options.Count;
+        PlayerPrefs.SetInt("ResolutionPreference", resolutionCoefficient);
+#endif
         LoadSettings();
 #if UNITY_WEBGL
         fullScreenToggle.gameObject.SetActive(false);
         exitButton.SetActive(false);
+        resolutionDropdown.gameObject.SetActive(false);
 #endif
     }
 
