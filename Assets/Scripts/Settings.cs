@@ -90,8 +90,8 @@ public class Settings : MonoBehaviour
     
     public void SetVolume()
     {
-        mainThemeSource.volume = volumeSlider.value - 0.2f;
-        soundThemeSource.volume = volumeSlider.value - 0.1f;
+        mainThemeSource.volume = volumeSlider.value - 0.1f;
+        soundThemeSource.volume = volumeSlider.value - 0.2f;
         soundUISourсe.volume = volumeSlider.value;
         SaveSettings();
     }
