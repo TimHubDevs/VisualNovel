@@ -30,43 +30,20 @@ public class GameLogic : MonoBehaviour
         _currentAct.gameObject.SetActive(true);
         _currentAct.StartAct(() =>
         {
-            StopPlaySound();
             startActNum++;
             if (_acts.Count <= startActNum)
             {
                 //PlayMenuMusic
                 return;
             }
-            StartNextAct(startActNum);
+            StartAct(startActNum);
         });
-        PlayMusicBackground(_currentAct);
     }
-
-    private void StartNextAct(int actNum)
-    {
-        _currentAct = _acts[actNum];
-        _currentAct.gameObject.SetActive(true);
-        _currentAct.StartAct(StopPlaySound);
-        PlayMusicBackground(_currentAct);
-    }
-
-    private void StopPlaySound()
-    {
-        _settings.soundThemeSource.clip = null;
-    }
-
-    private void PlayMusicBackground(Act act)
-    {
-        if (_settings.mainThemeSource.clip == act._actMusic) return;
-        _settings.mainThemeSource.clip = act._actMusic;
-        _settings.mainThemeSource.Play();
-    }
-
 
     public void LoadPlay()
     {
         // load and play act in save system
-        StartAct(1);
+        StartAct(2);
     }
     
     public void HideAct()

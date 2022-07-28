@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Act : MonoBehaviour
 {
     [SerializeField] public Image _background;
+    [SerializeField] public Image _foreground;
     [SerializeField] public Image _character;
     [SerializeField] public int _id;
     [SerializeField] public AudioClip _actMusic;
@@ -17,16 +18,18 @@ public class Act : MonoBehaviour
     [SerializeField] public Text characterName;
     [SerializeField] public Text characterSay;
     [SerializeField] public List<Button> buttons;
-    [SerializeField] public bool canTap;
     [SerializeField] public float tapingDelay;
     [SerializeField] public Settings settings;
+    [SerializeField] public GameLogic gameLogic;
     [SerializeField] public GameObject choosePanel;
     
     protected int currentStep = 0;
-    protected bool _textFull;
     protected IEnumerator _currentCoroutine;
     
+    protected bool _textFull;
     protected bool isActEnd;
+    protected bool isCanTap;
+
 
     public virtual void StartAct(Action endCallback)
     {
@@ -38,24 +41,36 @@ public class Act : MonoBehaviour
     
     protected virtual void OnButtonClick()
     {
-        if (CheckIsRoutinePlay())
+        if (isCanTap)
         {
-            StopCoroutine(_currentCoroutine);
-            characterSay.text = _currentMessage.text;
-            _textFull = true;
-        }
-        else
-        {
-            if (_currentMessage.nextMessage.Count == 0)
+            if (CheckIsRoutinePlay())
             {
-                isActEnd = true;
-                return;
+                StopCoroutine(_currentCoroutine);
+                characterSay.text = _currentMessage.text;
+                _textFull = true;
             }
-            currentStep = _currentMessage.nextMessage[0].id;
-            NextStep();
+            else
+            {
+                if (_currentMessage.nextMessage.Count == 0)
+                {
+                    StartCoroutine(EndAction());
+                    return;
+                }
+                currentStep = _currentMessage.nextMessage[0].id;
+                NextStep();
+            }
         }
     }
-    
+
+    private IEnumerator EndAction()
+    {
+        AnimateImageShow(_foreground, 2);
+        settings.mainThemeSource.Stop();
+        settings.soundThemeSource.Stop();
+        yield return new WaitForSeconds(2);
+        isActEnd = true;
+    }
+
     private bool CheckIsRoutinePlay()
     {
         return !_textFull;
@@ -151,5 +166,18 @@ public class Act : MonoBehaviour
         image.color = imageColor;
         imageColor.a = 1;
         DOTween.To(() => image.color, value => image.color = value, imageColor, duration);
+    }
+    
+    protected void AnimateImageHide(Image image, int duration)
+    {
+        image.gameObject.SetActive(true);
+        var imageColor = image.color;
+        imageColor.a = 1;
+        image.color = imageColor;
+        imageColor.a = 0;
+        DOTween.To(() => image.color, value =>
+        {
+            image.color = value;
+        }, imageColor, duration).OnComplete(() => image.gameObject.SetActive(false));
     }
 }

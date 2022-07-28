@@ -52,4 +52,5 @@ MonoBehaviour:
   character: {fileID: 21300000, guid: 70f25634485bb2741876c1f3c6d1f27e, type: 3}
   showCharacter: 0
   relationPoint: 0
-  nextMessage: []
+  nextMessage:
+  - {fileID: 721447890216681105, guid: 000f3ec46973a5c4186d2c357dd05603, type: 3}
