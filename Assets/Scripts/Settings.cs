@@ -25,13 +25,18 @@ public class Settings : MonoBehaviour
             string option = _resolutions[i].width + "x" + _resolutions[i].height + " " + _resolutions[i].refreshRate + "Hz";
             options.Add(option);
         }
-
+       
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
+#if UNITY_WEBGL
+        int resolutionCoefficient = options.Count;
+        resolutionDropdown.value = resolutionCoefficient;
+#endif
         LoadSettings();
 #if UNITY_WEBGL
         fullScreenToggle.gameObject.SetActive(false);
         exitButton.SetActive(false);
+        resolutionDropdown.gameObject.SetActive(false);
 #endif
     }
 
@@ -65,8 +70,10 @@ public class Settings : MonoBehaviour
 
     private void LoadSettings()
     {
+#if !UNITY_WEBGL
         resolutionDropdown.value = PlayerPrefsSaveSystem.LoadResolutionSetting();
         fullScreenToggle.isOn = PlayerPrefsSaveSystem.LoadFullScreenSetting();
+#endif
         mainThemeSource.mute = PlayerPrefsSaveSystem.LoadChangeMusicState();
         soundUISourсe.mute = PlayerPrefsSaveSystem.LoadChangeSoundState();
         soundThemeSource.mute = PlayerPrefsSaveSystem.LoadChangeEventMusic();
@@ -74,17 +81,19 @@ public class Settings : MonoBehaviour
         dashMusic.SetActive(mainThemeSource.mute);
         dashSound.SetActive(soundUISourсe.mute);
         volumeSlider.gameObject.SetActive(!mainThemeSource.mute || !soundUISourсe.mute);
+#if !UNITY_WEBGL
         resolutionDropdown.onValueChanged.AddListener(arg =>
         {
             SetResolution();
         });
-        volumeSlider.onValueChanged.AddListener(arg =>
-        {
-            SetVolume();
-        });
         fullScreenToggle.onValueChanged.AddListener(arg =>
         {
             SetFullscreen();
+        });
+#endif
+        volumeSlider.onValueChanged.AddListener(arg =>
+        {
+            SetVolume();
         });
     }
     
