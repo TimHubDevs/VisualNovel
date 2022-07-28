@@ -270,9 +270,10 @@ public class Act2 : Act
         _foreground.gameObject.SetActive(true);
         settings.soundThemeSource.clip = _actSound[2];
         settings.soundThemeSource.Play();
+        AnimateImageShow(_foreground, 0);
         yield return new WaitForSeconds(2);
-        AnimateImageHide(_foreground, 2);
-        yield return new WaitForSeconds(2);
+        AnimateImageHide(_foreground, 4);
+        yield return new WaitForSeconds(4);
         AnimateImageHide(_character, 1);
         yield return new WaitForSeconds(1);
         _currentMessage = _currentMessage.nextMessage[0];
