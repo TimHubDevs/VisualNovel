@@ -76,7 +76,7 @@ public class Act1 : Act
         settings.soundThemeSource.Play();
         _currentMessage = _startMessage;
         SetCharacterSprite(_currentMessage.character);
-        characterName.text = "Рятувальник: ";
+        characterName.text = "Рятувальник ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -93,7 +93,7 @@ public class Act1 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "ГГ: ";
+        characterName.text = "Ви ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -109,7 +109,7 @@ public class Act1 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Рятувальник: ";
+        characterName.text = "Рятувальник ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -126,7 +126,7 @@ public class Act1 : Act
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0]; 
         HideCharacter();
-        characterName.text = "???: ";
+        characterName.text = "??? ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -143,7 +143,7 @@ public class Act1 : Act
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0]; 
         SetCharacterSprite(_currentMessage.character);
-        characterName.text = "ГГ: ";
+        characterName.text = "Ви ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -159,7 +159,7 @@ public class Act1 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Надія: ";
+        characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -175,7 +175,7 @@ public class Act1 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "ГГ: ";
+        characterName.text = "Ви ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -191,7 +191,7 @@ public class Act1 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Надія: ";
+        characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -212,7 +212,7 @@ public class Act1 : Act
         var point1 = _currentMessage.nextMessage[0].relationPoint;
         var point2 = _currentMessage.nextMessage[1].relationPoint;
         var point3 = _currentMessage.nextMessage[2].relationPoint;
-        characterName.text = "ГГ: ";
+        characterName.text = "Ви ";
         SetChooseButton(message1, point1, message2, point2, message3, point3, nextMessage =>
         {
             _currentMessage = nextMessage;
@@ -226,7 +226,7 @@ public class Act1 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
-        characterName.text = "Надія: ";
+        characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -241,7 +241,7 @@ public class Act1 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
-        characterName.text = "Надія: ";
+        characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -255,7 +255,7 @@ public class Act1 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
-        characterName.text = "Надія: ";
+        characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -271,7 +271,7 @@ public class Act1 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "ГГ: ";
+        characterName.text = "Ви ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -287,7 +287,7 @@ public class Act1 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "ГГ: ";
+        characterName.text = "Ви ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -302,7 +302,7 @@ public class Act1 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Надія: ";
+        characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
