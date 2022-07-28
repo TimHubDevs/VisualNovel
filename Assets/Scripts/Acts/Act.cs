@@ -123,7 +123,7 @@ public class Act : MonoBehaviour
             AddPoint(relationPoint1);
             choosePanel.SetActive(false);
             buttons[0].gameObject.SetActive(true);
-            finalMessage.Invoke(_currentMessage.nextMessage[0].nextMessage[0]);
+            finalMessage.Invoke(_currentMessage.nextMessage[0]);
             ClearButtonsListener();
         });
         buttons[2].onClick.AddListener(()=>
@@ -131,7 +131,7 @@ public class Act : MonoBehaviour
             AddPoint(relationPoint2);
             choosePanel.SetActive(false);
             buttons[0].gameObject.SetActive(true);
-            finalMessage.Invoke(_currentMessage.nextMessage[1].nextMessage[0]);
+            finalMessage.Invoke(_currentMessage.nextMessage[1]);
             ClearButtonsListener();
         });
         buttons[3].onClick.AddListener(()=>
@@ -139,7 +139,7 @@ public class Act : MonoBehaviour
             AddPoint(relationPoint3);
             choosePanel.SetActive(false);
             buttons[0].gameObject.SetActive(true);
-            finalMessage.Invoke(_currentMessage.nextMessage[2].nextMessage[0]);
+            finalMessage.Invoke(_currentMessage.nextMessage[2]);
             ClearButtonsListener();
         });
     }

@@ -226,6 +226,7 @@ public class Act1 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
         characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
@@ -241,6 +242,7 @@ public class Act1 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
         characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
@@ -255,6 +257,7 @@ public class Act1 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
         characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {

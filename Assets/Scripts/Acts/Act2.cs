@@ -145,6 +145,7 @@ public class Act2 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
         SetCharacterSprite(_currentMessage.character);
         characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
@@ -161,6 +162,7 @@ public class Act2 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
         SetCharacterSprite(_currentMessage.character);
         characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
@@ -177,6 +179,7 @@ public class Act2 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
         SetCharacterSprite(_currentMessage.character);
         characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
