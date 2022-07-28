@@ -50,4 +50,5 @@ MonoBehaviour:
   showCharacter: 0
   relationPoint: 0
   nextMessage:
-  - {fileID: 6689071348506302783}
+  - {fileID: 2324381657479244244, guid: 46ef93feaaa7f8d468c3caa4cc705ef1, type: 3}
+  - {fileID: 1838650617089656494, guid: 64f733f23d55aa1409381714af58312a, type: 3}

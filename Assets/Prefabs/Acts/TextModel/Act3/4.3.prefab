@@ -52,4 +52,4 @@ MonoBehaviour:
   showCharacter: 0
   relationPoint: 0
   nextMessage:
-  - {fileID: 0}
+  - {fileID: 5891702268491966180, guid: 6c8be575b4404d841a2b092100e2f539, type: 3}

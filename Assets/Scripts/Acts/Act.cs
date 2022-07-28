@@ -64,7 +64,7 @@ public class Act : MonoBehaviour
 
     private IEnumerator EndAction()
     {
-        AnimateImageShow(_foreground, 2);
+        _foreground.gameObject.SetActive(true);
         settings.mainThemeSource.Stop();
         settings.soundThemeSource.Stop();
         yield return new WaitForSeconds(2);
@@ -99,10 +99,14 @@ public class Act : MonoBehaviour
         endCallback.Invoke();
     }
 
-    protected void SetCharacterSprite(Sprite characterSprite)
+    protected void SetCharacterSprite(Sprite characterSprite, bool isAlphaZero)
     {
         _character.gameObject.SetActive(true);
         _character.sprite = characterSprite;
+        var characterColor = _character.color;
+        if (isAlphaZero) return;
+        characterColor.a = 1f;
+        _character.color = characterColor;
     }
     
     protected void HideCharacter()
@@ -179,5 +183,19 @@ public class Act : MonoBehaviour
         {
             image.color = value;
         }, imageColor, duration).OnComplete(() => image.gameObject.SetActive(false));
+    }
+    
+    protected void AnimateObjectScaleUp(Transform transform, int duration)
+    {
+        var newScale = new Vector3(2, 2, 1);
+        DOTween.To(() => transform.localScale, value =>
+        {
+            transform.localScale = value;
+        }, newScale, duration);
+    }
+    
+    protected void BackObjectScale(Transform transform)
+    {
+        transform.localScale = Vector3.one;
     }
 }

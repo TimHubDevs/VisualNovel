@@ -6,6 +6,7 @@ public class GameLogic : MonoBehaviour
 {
     [SerializeField] private List<Act> _acts;
     [SerializeField] private Settings _settings;
+    [SerializeField] private AudioClip _menuClip;
 
     private Act _currentAct;
 
@@ -34,6 +35,9 @@ public class GameLogic : MonoBehaviour
             if (_acts.Count <= startActNum)
             {
                 //PlayMenuMusic
+                _settings.mainThemeSource.clip = _menuClip;
+                _settings.soundThemeSource.clip = null;
+                _settings.mainThemeSource.Play();
                 return;
             }
             StartAct(startActNum);
@@ -43,7 +47,7 @@ public class GameLogic : MonoBehaviour
     public void LoadPlay()
     {
         // load and play act in save system
-        StartAct(2);
+        StartAct(3);
     }
     
     public void HideAct()

@@ -75,7 +75,7 @@ public class Act1 : Act
         settings.soundThemeSource.clip = _actSound[0];
         settings.soundThemeSource.Play();
         _currentMessage = _startMessage;
-        SetCharacterSprite(_currentMessage.character);
+        SetCharacterSprite(_currentMessage.character, false);
         characterName.text = "Рятувальник ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
@@ -142,7 +142,7 @@ public class Act1 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0]; 
-        SetCharacterSprite(_currentMessage.character);
+        SetCharacterSprite(_currentMessage.character, false);
         characterName.text = "Ви ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
