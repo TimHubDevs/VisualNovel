@@ -26,7 +26,7 @@ public class Act : MonoBehaviour
     protected bool _textFull;
     protected IEnumerator _currentCoroutine;
     
-    private bool isActEnd;
+    protected bool isActEnd;
 
     public virtual void StartAct(Action endCallback)
     {
