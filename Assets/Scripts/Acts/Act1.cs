@@ -60,6 +60,15 @@ public class Act1 : Act
 
     private void StepZero()
     {
+        if (settings.mainThemeSource.clip == _actMusic)
+        {
+            settings.mainThemeSource.UnPause();
+        }
+        else
+        {
+            settings.mainThemeSource.clip = _actMusic;
+            settings.mainThemeSource.Play();
+        }
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
@@ -75,6 +84,7 @@ public class Act1 : Act
             Debug.Log("End Text 0");
         });
         StartCoroutine(_currentCoroutine);
+        isCanTap = true;
     }
 
     private void StepOne()

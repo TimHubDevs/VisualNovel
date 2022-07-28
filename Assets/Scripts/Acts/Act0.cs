@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Act0 : Act
 {
     [SerializeField] public Image _smoke;
-    [SerializeField] public Image _foreground;
+    
     public override void StartAct(Action endCallback)
     {
         base.StartAct(endCallback);
@@ -15,6 +15,8 @@ public class Act0 : Act
 
     private IEnumerator ActZero()
     {
+        settings.mainThemeSource.clip = _actMusic;
+        settings.mainThemeSource.Play();
         settings.soundThemeSource.clip = _actSound[0];
         settings.soundThemeSource.Play();
         yield return new WaitForSeconds(4);
