@@ -10,10 +10,10 @@ public class Act0 : Act
     public override void StartAct(Action endCallback)
     {
         base.StartAct(endCallback);
-        StartCoroutine(ActZero(endCallback));
+        StartCoroutine(ActZero());
     }
 
-    private IEnumerator ActZero(Action endCallback)
+    private IEnumerator ActZero()
     {
         settings.soundThemeSource.clip = _actSound[0];
         settings.soundThemeSource.Play();
@@ -38,8 +38,6 @@ public class Act0 : Act
         settings.soundThemeSource.clip = _actSound[6];
         settings.soundThemeSource.Play();
         yield return new WaitForSeconds(2);
-        Debug.Log("End Act 0");
-        gameObject.SetActive(false);
-        endCallback.Invoke();
+        isActEnd = true;
     }
 }
