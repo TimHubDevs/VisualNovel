@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 15
-  text: "\u0422\u0430\u043A. \u0414\u0435\u0441\u044C \u043D\u0430\u0447\u0435 \u0442\u0443\u0442
-    \u0431\u0443\u043B\u0430.. \u0410, \u043E\u0441\u044C!\n"
+  text: "\u0422\u0430\u043A. \u0414\u0435\u0441\u044C, \u043D\u0430\u0447\u0435,
+    \u0442\u0443\u0442 \u0431\u0443\u043B\u0430. \u0410, \u043E\u0441\u044C!\n"
   characterType: 7
   character: {fileID: 0}
   showCharacter: 0

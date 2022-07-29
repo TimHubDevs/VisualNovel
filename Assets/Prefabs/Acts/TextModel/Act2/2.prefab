@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   text: "\u0426\u0435 \u043C\u043E\u044F \u0443\u043B\u044E\u0431\u043B\u0435\u043D\u0430
-    \u043A\u0432\u0456\u0442\u043A\u0430."
+    \u043A\u0432\u0456\u0442\u043A\u0430 - \u0430\u043D\u0435\u043C\u043E\u043D\u0447\u0438\u043A."
   characterType: 2
   character: {fileID: 21300000, guid: 66f9c636d3ca2b4419140bf1e732ddbe, type: 3}
   showCharacter: 0
