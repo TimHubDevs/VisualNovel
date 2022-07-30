@@ -1502,6 +1502,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Act 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6956974173887017661, guid: 2ecdaa8ddd9dd754a99874e0e149ddfc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8354017040785003538, guid: 2ecdaa8ddd9dd754a99874e0e149ddfc, type: 3}
       propertyPath: settings
       value: 
@@ -2161,6 +2165,7 @@ GameObject:
   - component: {fileID: 5569730812742806056}
   - component: {fileID: 5569730812742806058}
   - component: {fileID: 410039782898912207}
+  - component: {fileID: 5569730812742806057}
   m_Layer: 5
   m_Name: Act 4
   m_TagString: Untagged
@@ -2193,6 +2198,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5569730812742806057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5569730812742806055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe126cf502e43dca56433152f36f480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _background: {fileID: 5569730813093168892}
+  _foreground: {fileID: 5569730814100009994}
+  _blur: {fileID: 0}
+  _character: {fileID: 5569730813356358549}
+  _id: 4
+  _actMusic: {fileID: 8300000, guid: cb1cf8c21d286a5448db003fd188bb18, type: 3}
+  _actSound:
+  - {fileID: 8300000, guid: 23d671b1bd52d92468c7a83eac249d6b, type: 3}
+  - {fileID: 8300000, guid: e775d32e439c33545a1d7cb61e5dea4e, type: 3}
+  - {fileID: 8300000, guid: b0e13533e8ba55c4a86710620365c6c2, type: 3}
+  _startMessage: {fileID: 0}
+  _currentMessage: {fileID: 0}
+  characterName: {fileID: 0}
+  characterSay: {fileID: 0}
+  fontForText: []
+  buttons: []
+  tapingDelay: 0
+  settings: {fileID: 0}
+  gameLogic: {fileID: 0}
+  choosePanel: {fileID: 0}
 --- !u!222 &5569730812742806058
 CanvasRenderer:
   m_ObjectHideFlags: 0
