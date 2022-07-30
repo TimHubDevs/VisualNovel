@@ -224,6 +224,9 @@ MonoBehaviour:
   _currentMessage: {fileID: 6280428270287146792, guid: cc79e8e9b60892447ac4ff58defa7cf5, type: 3}
   characterName: {fileID: 7196317659552135525}
   characterSay: {fileID: 1397045084473436607}
+  fontForText:
+  - {fileID: 12800000, guid: 82fea8aa85b88ad4ea343c9da495103b, type: 3}
+  - {fileID: 12800000, guid: ca1aa9e4330a40f40a92ef6e0ebfa8ca, type: 3}
   buttons:
   - {fileID: 6480878281976454957}
   - {fileID: 6177187686975608281}

@@ -300,6 +300,8 @@ MonoBehaviour:
   _currentMessage: {fileID: 7032128084215451644, guid: fa40a81efcf1f2e47bdc4262dd5f8981, type: 3}
   characterName: {fileID: 1788803727140051851}
   characterSay: {fileID: 7524989761058294609}
+  fontForText:
+  - {fileID: 12800000, guid: 82fea8aa85b88ad4ea343c9da495103b, type: 3}
   buttons:
   - {fileID: 2521412427353587139}
   - {fileID: 3365499756745029431}

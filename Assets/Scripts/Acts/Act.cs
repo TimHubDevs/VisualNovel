@@ -17,6 +17,7 @@ public class Act : MonoBehaviour
     [SerializeField] public MessageModel _currentMessage;
     [SerializeField] public Text characterName;
     [SerializeField] public Text characterSay;
+    [SerializeField] public List<Font> fontForText;
     [SerializeField] public List<Button> buttons;
     [SerializeField] public float tapingDelay;
     [SerializeField] public Settings settings;
