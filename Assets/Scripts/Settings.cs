@@ -91,15 +91,24 @@ public class Settings : MonoBehaviour
         {
             SetResolution();
         });
+        SetResolution();
         fullScreenToggle.onValueChanged.AddListener(arg =>
         {
             SetFullscreen();
         });
+        SetFullscreen();
 #endif
         volumeSlider.onValueChanged.AddListener(arg =>
         {
             SetVolume();
         });
+        SetVolume();
+        
+        speedTextSlider.onValueChanged.AddListener(arg =>
+        {
+            SetSpeedText();
+        });
+        SetSpeedText();
     }
 
     public void SetVolume()
@@ -110,10 +119,10 @@ public class Settings : MonoBehaviour
         SaveSettings();
     }
 
-    public void SetSpeedText(float number)
+    public void SetSpeedText()
     {
-        number = speedTextSlider.value;
-        coefficientTapingDelay = number * 10 / 10000;
+        float value = speedTextSlider.value;
+        coefficientTapingDelay = 0.1f - value + 0.01f;
         SaveSettings();
         act.GetTapingDelayValue(coefficientTapingDelay);
         Debug.Log(coefficientTapingDelay);

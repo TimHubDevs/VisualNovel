@@ -34,7 +34,8 @@ public class Act : MonoBehaviour
 
     public void Awake()
     {
-        tapingDelay = PlayerPrefsSaveSystem.LoadSpeedTextSetting()*10/10000;
+        float value = PlayerPrefsSaveSystem.LoadSpeedTextSetting();
+        tapingDelay = 0.1f - value + 0.01f;
     }
 
     public void GetTapingDelayValue(float coefficient)

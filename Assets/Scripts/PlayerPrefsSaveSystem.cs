@@ -42,7 +42,7 @@ public static class PlayerPrefsSaveSystem
     {
         if (PlayerPrefs.HasKey("SpeedText") == false)
         {
-            PlayerPrefs.SetFloat("SpeedText", 0.5f);
+            PlayerPrefs.SetFloat("SpeedText", 0.05f);
         }
 
         return PlayerPrefs.GetFloat("SpeedText");
