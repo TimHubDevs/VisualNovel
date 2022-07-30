@@ -13,6 +13,7 @@ public class Settings : MonoBehaviour
     [SerializeField] private Slider speedTextSlider;
     [SerializeField] private GameObject dashMusic;
     [SerializeField] private GameObject dashSound;
+    [SerializeField] private Act act;
     private float coefficientTapingDelay;
 
     private Resolution[] _resolutions;
@@ -81,7 +82,7 @@ public class Settings : MonoBehaviour
         soundUISourсe.mute = PlayerPrefsSaveSystem.LoadChangeSoundState();
         soundThemeSource.mute = PlayerPrefsSaveSystem.LoadChangeEventMusic();
         volumeSlider.value = PlayerPrefsSaveSystem.LoadVolumeSliderSetting();
-        coefficientTapingDelay = PlayerPrefsSaveSystem.LoadSpeedTextSetting()/1000;
+        speedTextSlider.value = PlayerPrefsSaveSystem.LoadSpeedTextSetting();
         dashMusic.SetActive(mainThemeSource.mute);
         dashSound.SetActive(soundUISourсe.mute);
         volumeSlider.gameObject.SetActive(!mainThemeSource.mute || !soundUISourсe.mute);
@@ -99,10 +100,6 @@ public class Settings : MonoBehaviour
         {
             SetVolume();
         });
-        speedTextSlider.onValueChanged.AddListener(arg =>
-        {
-            SetSpeedText();
-        });
     }
 
     public void SetVolume()
@@ -113,17 +110,15 @@ public class Settings : MonoBehaviour
         SaveSettings();
     }
 
-    public void SetSpeedText()
+    public void SetSpeedText(float number)
     {
-        coefficientTapingDelay = speedTextSlider.value / 1000;
+        number = speedTextSlider.value;
+        coefficientTapingDelay = number * 10 / 10000;
         SaveSettings();
-        ReturnCoefficientTapingDelay(coefficientTapingDelay);
+        act.GetTapingDelayValue(coefficientTapingDelay);
+        Debug.Log(coefficientTapingDelay);
     }
 
-    public void ReturnCoefficientTapingDelay(float tapingDelay)
-    {
-        tapingDelay = coefficientTapingDelay;
-    }
 
     public void ChangeMusicState()
     {

@@ -930,7 +930,7 @@ RectTransform:
   - {fileID: 6956974173992170915}
   - {fileID: 5569730812742806056}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -960,6 +960,7 @@ MonoBehaviour:
   speedTextSlider: {fileID: 1885906234}
   dashMusic: {fileID: 429187127}
   dashSound: {fileID: 1580334702}
+  act: {fileID: 1036414126}
 --- !u!114 &2001741547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,7 +1049,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2135410999 stripped
 GameObject:
@@ -1211,14 +1212,13 @@ MonoBehaviour:
   _currentMessage: {fileID: 7032128084215451644, guid: fa40a81efcf1f2e47bdc4262dd5f8981, type: 3}
   characterName: {fileID: 5166130040136484198}
   characterSay: {fileID: 5166130040136484197}
-  fontForText:
-  - {fileID: 12800000, guid: 82fea8aa85b88ad4ea343c9da495103b, type: 3}
+  fontForText: []
   buttons:
   - {fileID: 5166130040136484196}
   - {fileID: 5166130040136484193}
   - {fileID: 5166130040136484192}
   - {fileID: 5166130040136484191}
-  tapingDelay: 0.05
+  tapingDelay: 0
   settings: {fileID: 2001741546}
   gameLogic: {fileID: 2001741547}
   choosePanel: {fileID: 5166130040136484194}
@@ -1738,6 +1738,10 @@ PrefabInstance:
     - target: {fileID: 5653125460227860430, guid: f18590f270bbf4046be30766c75aa646, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172379849496910500, guid: f18590f270bbf4046be30766c75aa646, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7172379849496910500, guid: f18590f270bbf4046be30766c75aa646, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

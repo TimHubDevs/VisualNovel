@@ -34,19 +34,12 @@ public class Act : MonoBehaviour
 
     public void Awake()
     {
-        tapingDelay = PlayerPrefsSaveSystem.LoadSpeedTextSetting()/10;
+        tapingDelay = PlayerPrefsSaveSystem.LoadSpeedTextSetting()*10/10000;
     }
 
     public void GetTapingDelayValue(float coefficient)
     {
-        float ExamtaipingDelay;
-        ExamtaipingDelay = coefficient;
-        ReturnValueTapingDelay();
-    }
-
-    public ReturnValueTapingDelay(float exam)
-    {
-
+        tapingDelay = coefficient;
     }
 
     public virtual void StartAct(Action endCallback)
