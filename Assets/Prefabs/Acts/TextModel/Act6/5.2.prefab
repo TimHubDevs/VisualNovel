@@ -27,7 +27,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,4 +51,4 @@ MonoBehaviour:
   showCharacter: 0
   relationPoint: 1
   nextMessage:
-  - {fileID: 5796223047542323371, guid: f9995c0b3d66dcb4fb0b273ca52e4a5b, type: 3}
+  - {fileID: 8159669792464888230, guid: 7c64605abcdbf324da824ea79f6abc69, type: 3}
