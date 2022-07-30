@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Act3 : Act
 {
-    private int chosenStep;
+    private int chosenStep = 0;
+    private bool showCovdra;
     
     public override void StartAct(Action endCallback)
     {
@@ -41,6 +42,10 @@ public class Act3 : Act
     
     protected override void NextStep()
     {
+        if (currentStep == 13 || currentStep == 14)
+        {
+            currentStep = chosenStep;
+        }
         switch (currentStep)
         {
             case 1:
@@ -135,7 +140,7 @@ public class Act3 : Act
         {
             _textFull = true;
             currentStep++;
-            Debug.Log("End Text 1");
+            Debug.Log("End Text 3");
         });
         StartCoroutine(_currentCoroutine);
     }
@@ -159,6 +164,7 @@ public class Act3 : Act
             {
                 case 4:
                     chosenStep = 13;
+                    showCovdra = true;
                     break;
                 case 5:
                     chosenStep = 14;
@@ -223,8 +229,9 @@ public class Act3 : Act
         settings.soundThemeSource.Play();
         BackObjectScale(_background.transform);
         yield return new WaitForSeconds(2);
-        _currentMessage = _currentMessage.nextMessage[0];
+        _currentMessage = _currentMessage.nextMessage[1];
         SetCharacterSprite(_currentMessage.character, false);
+        AnimateImageHide(_foreground, 0);
         characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
@@ -319,8 +326,8 @@ public class Act3 : Act
         characterName.text = "Водійка ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
-            _textFull = true;
             currentStep = chosenStep;
+            _textFull = true;
             isCanTap = true;
             Debug.Log("End Text 12");
         });
@@ -349,7 +356,14 @@ public class Act3 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        SetCharacterSprite(_currentMessage.character, false);
+        if (showCovdra)
+        {
+            SetCharacterSprite(_currentMessage.nextMessage[0].character, false);
+        }
+        else
+        {
+            SetCharacterSprite(_currentMessage.character, false);
+        }
         characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
