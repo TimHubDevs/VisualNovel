@@ -80,7 +80,7 @@ MonoBehaviour:
   - {fileID: 5105545287135366280}
   - {fileID: 4504399666013942445}
   - {fileID: 7605424999339277661}
-  tapingDelay: 0.1
+  tapingDelay: 0.05
   settings: {fileID: 0}
   gameLogic: {fileID: 0}
   choosePanel: {fileID: 9067837459568639180}
@@ -377,6 +377,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 82fea8aa85b88ad4ea343c9da495103b, type: 3}
+    - target: {fileID: 8724881436282123384, guid: 5c0a349ca36a2614f89109239ae59b85, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8724881436282123386, guid: 5c0a349ca36a2614f89109239ae59b85, type: 3}
       propertyPath: m_IsActive
       value: 1

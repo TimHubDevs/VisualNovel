@@ -281,6 +281,7 @@ public class Act2 : Act
         AnimateImageShow(_foreground, 0);
         //Hide other character
         AnimateImageHide(_character, 0);
+        AnimateImageHide(_blur, 0);
         yield return new WaitForSeconds(2);
         AnimateImageHide(_foreground, 4);
         yield return new WaitForSeconds(4);
@@ -289,7 +290,6 @@ public class Act2 : Act
         AnimateImageShow(_character, 1);
         characterName.text = "Ви ";
         characterSay.font = fontForText[0];
-        AnimateImageHide(_blur, 1);
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
