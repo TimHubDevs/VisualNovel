@@ -256,6 +256,7 @@ public class Act2 : Act
         SetCharacterSprite(_currentMessage.character, true);
         AnimateImageShow(_character, 2);
         yield return new WaitForSeconds(2);
+        AnimateImageShow(_blur, 1);
         characterName.text = "Ви ";
         characterSay.font = fontForText[1];
         _currentCoroutine = ShowText(_currentMessage.text, () =>
@@ -288,6 +289,7 @@ public class Act2 : Act
         AnimateImageShow(_character, 1);
         characterName.text = "Ви ";
         characterSay.font = fontForText[0];
+        AnimateImageHide(_blur, 1);
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
