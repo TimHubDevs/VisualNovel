@@ -2,6 +2,15 @@ using UnityEngine;
 
 public static class PlayerPrefsSaveSystem
 {
+    public static int LoadGameStep()
+    {
+        if (PlayerPrefs.HasKey("GameStep") == false)
+        {
+            PlayerPrefs.SetInt("GameStep", 0);
+        }
+        return PlayerPrefs.GetInt("GameStep");
+    }
+    
     public static int LoadResolutionSetting()
     {
         if (PlayerPrefs.HasKey("ResolutionPreference") == false)
@@ -104,4 +113,8 @@ public static class PlayerPrefsSaveSystem
         PlayerPrefs.SetInt("SaveChangeSoundState", state);
     }
     
+    public static void SetGameStep(int step)
+    {
+        PlayerPrefs.SetInt("GameStep", step);
+    }
 }

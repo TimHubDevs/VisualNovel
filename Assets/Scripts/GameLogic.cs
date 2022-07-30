@@ -29,12 +29,12 @@ public class GameLogic : MonoBehaviour
     {
         _currentAct = _acts[startActNum];
         _currentAct.gameObject.SetActive(true);
+        PlayerPrefsSaveSystem.SetGameStep(startActNum);
         _currentAct.StartAct(() =>
         {
             startActNum++;
             if (_acts.Count <= startActNum)
             {
-                //PlayMenuMusic
                 _settings.mainThemeSource.clip = _menuClip;
                 _settings.soundThemeSource.clip = null;
                 _settings.mainThemeSource.Play();
@@ -46,12 +46,6 @@ public class GameLogic : MonoBehaviour
 
     public void LoadPlay()
     {
-        // load and play act in save system
-        StartAct(3);
-    }
-    
-    public void HideAct()
-    {
-        // set act active false
+        StartAct(PlayerPrefsSaveSystem.LoadGameStep());
     }
 }
