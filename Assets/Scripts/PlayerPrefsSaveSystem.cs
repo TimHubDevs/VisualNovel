@@ -2,6 +2,14 @@ using UnityEngine;
 
 public static class PlayerPrefsSaveSystem
 {
+    public static int LoadTapingDelay()
+    {
+        if (PlayerPrefs.HasKey("TapingDelay")==false)
+        {
+            PlayerPrefs.SetInt("TapingDelay", 2);
+        }
+        return PlayerPrefs.GetInt("TapingDelay");
+    }
     public static int LoadResolutionSetting()
     {
         if (PlayerPrefs.HasKey("ResolutionPreference") == false)
@@ -67,6 +75,12 @@ public static class PlayerPrefsSaveSystem
             PlayerPrefs.SetInt("PlayerPoint", 0);
         }
         return PlayerPrefs.GetInt("PlayerPoint");
+    }
+
+
+    public static void SetCoefficientTapingDelay(int coefitient)
+    {
+        PlayerPrefs.SetInt("TapingDelay", coefitient);
     }
 
     public static void SetResolutionSetting(int resolution)

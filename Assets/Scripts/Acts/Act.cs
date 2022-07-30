@@ -18,11 +18,12 @@ public class Act : MonoBehaviour
     [SerializeField] public Text characterName;
     [SerializeField] public Text characterSay;
     [SerializeField] public List<Button> buttons;
-    [SerializeField] public float tapingDelay;
+    private float tapingDelay;
     [SerializeField] public Settings settings;
     [SerializeField] public GameLogic gameLogic;
     [SerializeField] public GameObject choosePanel;
-    
+
+
     protected int currentStep = 0;
     protected IEnumerator _currentCoroutine;
     
@@ -30,7 +31,10 @@ public class Act : MonoBehaviour
     protected bool isActEnd;
     protected bool isCanTap;
 
-
+    private void Awake()
+    {
+        tapingDelay = settings.ReturnValuesCoefficientTapingDelay();
+    }
     public virtual void StartAct(Action endCallback)
     {
         _currentMessage = _startMessage;

@@ -12,6 +12,12 @@ public class Settings : MonoBehaviour
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private GameObject dashMusic;
     [SerializeField] private GameObject dashSound;
+    [SerializeField] private Button SlowerButton;
+    [SerializeField] private Button FasterButton;
+    [SerializeField] private Text TextSpeed;
+    public int coefficientTapingDelay;
+    private float[] ValuesCoefficientTapingDelay = { 0.1f, 0.075f, 0.05f, 0.025f, 0.01f };
+    string[] ValuesTextSpeed = { "0,25x", "0,5x", "1x", "1,5x", "2x" };
 
     private Resolution[] _resolutions;
 
@@ -25,7 +31,7 @@ public class Settings : MonoBehaviour
             string option = _resolutions[i].width + "x" + _resolutions[i].height + " " + _resolutions[i].refreshRate + "Hz";
             options.Add(option);
         }
-       
+
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
 #if UNITY_WEBGL
@@ -66,6 +72,7 @@ public class Settings : MonoBehaviour
         PlayerPrefsSaveSystem.SetThemeSource(changeThemeSource);
         PlayerPrefsSaveSystem.SetSoundState(changeSoundState);
         PlayerPrefsSaveSystem.SetVolumeSliderValue(volumeSlider.value);
+        PlayerPrefsSaveSystem.SetCoefficientTapingDelay(coefficientTapingDelay);
     }
 
     private void LoadSettings()
@@ -74,10 +81,12 @@ public class Settings : MonoBehaviour
         resolutionDropdown.value = PlayerPrefsSaveSystem.LoadResolutionSetting();
         fullScreenToggle.isOn = PlayerPrefsSaveSystem.LoadFullScreenSetting();
 #endif
+        coefficientTapingDelay = PlayerPrefsSaveSystem.LoadTapingDelay();
         mainThemeSource.mute = PlayerPrefsSaveSystem.LoadChangeMusicState();
         soundUISourсe.mute = PlayerPrefsSaveSystem.LoadChangeSoundState();
         soundThemeSource.mute = PlayerPrefsSaveSystem.LoadChangeEventMusic();
         volumeSlider.value = PlayerPrefsSaveSystem.LoadVolumeSliderSetting();
+        TextSpeed.text = GetTextSpeedValue();
         dashMusic.SetActive(mainThemeSource.mute);
         dashSound.SetActive(soundUISourсe.mute);
         volumeSlider.gameObject.SetActive(!mainThemeSource.mute || !soundUISourсe.mute);
@@ -96,7 +105,7 @@ public class Settings : MonoBehaviour
             SetVolume();
         });
     }
-    
+
     public void SetVolume()
     {
         mainThemeSource.volume = volumeSlider.value - 0.1f;
@@ -105,6 +114,33 @@ public class Settings : MonoBehaviour
         SaveSettings();
     }
 
+    public void AddCoefficientTapingDelay()
+    {
+        coefficientTapingDelay = coefficientTapingDelay + 1;
+        MaxMinValueCoefficientTapingDelay();
+        SaveSettings();
+        TextSpeed.text = GetTextSpeedValue();
+    }
+
+    public void PutAwayCoefficientTapingDelay()
+    {
+        coefficientTapingDelay = coefficientTapingDelay - 1;
+        MaxMinValueCoefficientTapingDelay();
+        SaveSettings();
+        TextSpeed.text = GetTextSpeedValue();
+    }
+    public int MaxMinValueCoefficientTapingDelay()
+    {
+        if(coefficientTapingDelay>4)
+        {
+            coefficientTapingDelay = 4;
+        }
+        if (coefficientTapingDelay<0)
+        {
+            coefficientTapingDelay = 0;
+        }
+        return coefficientTapingDelay;
+    }
     public void ChangeMusicState()
     {
         if (mainThemeSource.mute)
@@ -142,6 +178,16 @@ public class Settings : MonoBehaviour
     private void ChangeActiveVolumeSlider()
     {
         volumeSlider.gameObject.SetActive(!soundUISourсe.mute || !mainThemeSource.mute);
+    }
+
+    private string GetTextSpeedValue()
+    {
+        return ValuesTextSpeed[PlayerPrefsSaveSystem.LoadTapingDelay()];
+    }
+
+    public float ReturnValuesCoefficientTapingDelay()
+    {
+        return ValuesCoefficientTapingDelay[PlayerPrefsSaveSystem.LoadTapingDelay()];
     }
 
     public void QuitApplication()
