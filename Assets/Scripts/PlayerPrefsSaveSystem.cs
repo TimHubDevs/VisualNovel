@@ -37,6 +37,15 @@ public static class PlayerPrefsSaveSystem
         }
 
         return PlayerPrefs.GetFloat("VolumeSlider");
+
+    }    public static float LoadSpeedTextSetting()
+    {
+        if (PlayerPrefs.HasKey("SpeedText") == false)
+        {
+            PlayerPrefs.SetFloat("SpeedText", 0.5f);
+        }
+
+        return PlayerPrefs.GetFloat("SpeedText");
     }
 
     public static bool LoadChangeMusicState()
@@ -96,6 +105,10 @@ public static class PlayerPrefsSaveSystem
     public static void SetVolumeSliderValue(float value)
     {
         PlayerPrefs.SetFloat("VolumeSlider", value);
+    }
+    public static void SetSpeedTextValue(float value)
+    {
+        PlayerPrefs.SetFloat("SpeedText", value);
     }
     
     public static void SetMusicState(int state)

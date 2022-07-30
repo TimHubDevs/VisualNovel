@@ -10,8 +10,10 @@ public class Settings : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] public AudioSource mainThemeSource, soundThemeSource, soundUISourсe;
     [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider speedTextSlider;
     [SerializeField] private GameObject dashMusic;
     [SerializeField] private GameObject dashSound;
+    private float coefficientTapingDelay;
 
     private Resolution[] _resolutions;
 
@@ -25,7 +27,7 @@ public class Settings : MonoBehaviour
             string option = _resolutions[i].width + "x" + _resolutions[i].height + " " + _resolutions[i].refreshRate + "Hz";
             options.Add(option);
         }
-       
+
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
 #if UNITY_WEBGL
@@ -66,6 +68,7 @@ public class Settings : MonoBehaviour
         PlayerPrefsSaveSystem.SetThemeSource(changeThemeSource);
         PlayerPrefsSaveSystem.SetSoundState(changeSoundState);
         PlayerPrefsSaveSystem.SetVolumeSliderValue(volumeSlider.value);
+        PlayerPrefsSaveSystem.SetSpeedTextValue(speedTextSlider.value);
     }
 
     private void LoadSettings()
@@ -78,6 +81,7 @@ public class Settings : MonoBehaviour
         soundUISourсe.mute = PlayerPrefsSaveSystem.LoadChangeSoundState();
         soundThemeSource.mute = PlayerPrefsSaveSystem.LoadChangeEventMusic();
         volumeSlider.value = PlayerPrefsSaveSystem.LoadVolumeSliderSetting();
+        coefficientTapingDelay = PlayerPrefsSaveSystem.LoadSpeedTextSetting()/1000;
         dashMusic.SetActive(mainThemeSource.mute);
         dashSound.SetActive(soundUISourсe.mute);
         volumeSlider.gameObject.SetActive(!mainThemeSource.mute || !soundUISourсe.mute);
@@ -95,14 +99,30 @@ public class Settings : MonoBehaviour
         {
             SetVolume();
         });
+        speedTextSlider.onValueChanged.AddListener(arg =>
+        {
+            SetSpeedText();
+        });
     }
-    
+
     public void SetVolume()
     {
         mainThemeSource.volume = volumeSlider.value - 0.1f;
         soundThemeSource.volume = volumeSlider.value - 0.2f;
         soundUISourсe.volume = volumeSlider.value;
         SaveSettings();
+    }
+
+    public void SetSpeedText()
+    {
+        coefficientTapingDelay = speedTextSlider.value / 1000;
+        SaveSettings();
+        ReturnCoefficientTapingDelay(coefficientTapingDelay);
+    }
+
+    public void ReturnCoefficientTapingDelay(float tapingDelay)
+    {
+        tapingDelay = coefficientTapingDelay;
     }
 
     public void ChangeMusicState()
