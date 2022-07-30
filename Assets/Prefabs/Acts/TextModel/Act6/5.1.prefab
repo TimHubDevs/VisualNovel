@@ -44,12 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 5
-  text: "\u042F \u0442\u0430\u043A\u0438\u0439 \u0440\u0430\u0434\u0438\u0439 \u0449\u043E
+  text: "\u042F \u0442\u0430\u043A\u0438\u0439 \u0440\u0430\u0434\u0438\u0439, \u0449\u043E
     \u0442\u0438 \u0432\u0446\u0456\u043B\u0456\u043B\u0430!"
   characterType: 7
   character: {fileID: 0}
   showCharacter: 0
   relationPoint: 2
   nextMessage:
-  - {fileID: 8601598955684463422, guid: 092a6f62e80dbeb49ba8cc7cb275a103, type: 3}
-  - {fileID: 5796223047542323371, guid: f9995c0b3d66dcb4fb0b273ca52e4a5b, type: 3}
+  - {fileID: 135442055115004211, guid: 66fbeb19c82acb14b928906d186b8a12, type: 3}
