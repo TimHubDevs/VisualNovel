@@ -383,10 +383,7 @@ public class Act3 : Act
         _character.gameObject.SetActive(false);
         settings.soundThemeSource.clip = _actSound[2];
         settings.soundThemeSource.Play();
-        AnimateImageShow(_foreground, 20);
-        yield return new WaitForSeconds(11);
-        settings.soundThemeSource.clip = _actSound[3];
-        settings.soundThemeSource.Play();
+        AnimateImageShow(_foreground, 9);
         yield return new WaitForSeconds(9);
         isActEnd = true;
     }

@@ -74,6 +74,7 @@ public class Act1 : Act
         characterSay.text = String.Empty;
         settings.soundThemeSource.clip = _actSound[0];
         settings.soundThemeSource.Play();
+        settings.soundThemeSource.loop = true;
         _currentMessage = _startMessage;
         SetCharacterSprite(_currentMessage.character, false);
         characterName.text = "Рятувальник ";
@@ -239,6 +240,7 @@ public class Act1 : Act
 
     private void StepTwelve()
     {
+        settings.soundThemeSource.loop = false;
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
@@ -286,6 +288,7 @@ public class Act1 : Act
     
     private void StepFifteen()
     {
+        settings.soundThemeSource.loop = false;
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
@@ -301,6 +304,7 @@ public class Act1 : Act
     
     private void StepSixteen()
     {
+        settings.soundThemeSource.loop = false;
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;

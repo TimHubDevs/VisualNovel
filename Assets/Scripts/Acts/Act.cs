@@ -41,7 +41,7 @@ public class Act : MonoBehaviour
         StartCoroutine(ActEnd(endCallback));
     }
     
-    protected virtual void OnButtonClick()
+    public virtual void OnButtonClick()
     {
         if (isCanTap)
         {
@@ -185,6 +185,16 @@ public class Act : MonoBehaviour
         {
             image.color = value;
         }, imageColor, duration).OnComplete(() => image.gameObject.SetActive(false));
+    }
+    
+    protected void AnimateObjectShaking(Transform transform, int duration)
+    {
+        transform.DOShakePosition(duration, 2f);
+    }
+    
+    protected void StopObjectTween(Transform transform)
+    {
+        DOTween.Kill(transform);
     }
     
     protected void AnimateObjectScaleUp(Transform transform, int duration)

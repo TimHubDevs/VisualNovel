@@ -46,6 +46,7 @@ public class GameLogic : MonoBehaviour
 
     public void LoadPlay()
     {
-        StartAct(PlayerPrefsSaveSystem.LoadGameStep());
+        StartAct(4);
+        // StartAct(PlayerPrefsSaveSystem.LoadGameStep());
     }
 }
