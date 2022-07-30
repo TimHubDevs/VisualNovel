@@ -9,6 +9,7 @@ public class Act : MonoBehaviour
 {
     [SerializeField] public Image _background;
     [SerializeField] public Image _foreground;
+    [SerializeField] public Image _blur;
     [SerializeField] public Image _character;
     [SerializeField] public int _id;
     [SerializeField] public AudioClip _actMusic;
