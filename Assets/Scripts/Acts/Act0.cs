@@ -15,6 +15,7 @@ public class Act0 : Act
 
     private IEnumerator ActZero()
     {
+        AnimateImageHide(_foreground, 0);
         settings.mainThemeSource.clip = _actMusic;
         settings.mainThemeSource.Play();
         settings.soundThemeSource.clip = _actSound[0];
