@@ -46,8 +46,6 @@ public class GameLogic : MonoBehaviour
 
     public void LoadPlay()
     {
-        // StartAct(PlayerPrefsSaveSystem.LoadGameStep());
-        PlayerPrefsSaveSystem.SetPlayerRelationSheepPoint(1);
-        StartAct(7);
+        StartAct(PlayerPrefsSaveSystem.LoadGameStep());
     }
 }
