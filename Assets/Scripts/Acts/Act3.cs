@@ -253,7 +253,7 @@ public class Act3 : Act
         yield return new WaitForSeconds(1);
         settings.soundThemeSource.clip = _actSound[1];
         settings.soundThemeSource.Play();
-        AnimateObjectScaleUp(_background.transform, 3);
+        AnimateObjectScaleUp(_background.transform, 1.5f, 1.5f, 3);
         yield return new WaitForSeconds(3);
         _currentMessage = _currentMessage.nextMessage[0];
         SetCharacterSprite(_currentMessage.character, false);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class Act7 : Act
@@ -8,6 +9,7 @@ public class Act7 : Act
     [SerializeField] private Sprite _backNeutral;
     [SerializeField] private Sprite _backBad;
     [SerializeField] private Sprite _finalSprite;
+    [SerializeField] private GameObject Panel;
     private int chosenStep;
     private MessageModel chosenMessage;
     
@@ -603,9 +605,9 @@ public class Act7 : Act
     private IEnumerator StepTwentyEight()
     {
         isCanTap = false;
-        //музыка
-        // settings.mainThemeSource.clip = _actSound[4];
-        // settings.mainThemeSource.Play();
+        Panel.SetActive(false);
+        settings.mainThemeSource.clip = _actSound[4];
+        settings.mainThemeSource.Play();
         AnimateImageShow(_foreground, 0);
         AnimateImageHide(_character, 0);
         _background.sprite = _finalSprite;
@@ -613,6 +615,8 @@ public class Act7 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         AnimateImageHide(_foreground, 0);
+        AnimateObjectScaleUp(_background.transform, 3, 3,10);
+        _background.transform.DOMoveY(1000, 10);
         yield return new WaitForSeconds(10);
         //Show titre
         isActEnd = true;

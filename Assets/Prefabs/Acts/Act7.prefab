@@ -224,6 +224,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8ac2c14c1a2280e4895c939205208759, type: 3}
   - {fileID: 8300000, guid: 8ad0b8228b1ed3c41b230b316358bf01, type: 3}
   - {fileID: 8300000, guid: 161ad579df5ff7d428f54b0543acd7c2, type: 3}
+  - {fileID: 8300000, guid: 27efdd4445167504d8e809190b759de4, type: 3}
   _startMessage: {fileID: 7813510933703525670, guid: e84d7ef7437d0924c9cd4927058b6a5c, type: 3}
   _currentMessage: {fileID: 7813510933703525670, guid: e84d7ef7437d0924c9cd4927058b6a5c, type: 3}
   characterName: {fileID: 7689494927472920689}
@@ -241,6 +242,7 @@ MonoBehaviour:
   _backHappy: {fileID: 21300000, guid: 23f3d38df466a584ab083b9af143dfde, type: 3}
   _backNeutral: {fileID: 21300000, guid: cd57e046fdfb36c4a94acfcd2faf155b, type: 3}
   _backBad: {fileID: 21300000, guid: 7581fecaf49e347478c66e91fa406069, type: 3}
+  _finalSprite: {fileID: 21300000, guid: 10cbd7a16121319488e8f814847ba21d, type: 3}
 --- !u!1 &7630440320457568116
 GameObject:
   m_ObjectHideFlags: 0

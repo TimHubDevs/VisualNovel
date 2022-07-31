@@ -226,7 +226,7 @@ public class Act : MonoBehaviour
         DOTween.Kill(transform);
     }
     
-    protected void AnimateObjectScaleUp(Transform transform, int duration)
+    protected void AnimateObjectScaleUp(Transform transform, float xScale, float yScale, int duration)
     {
         var newScale = new Vector3(2, 2, 1);
         DOTween.To(() => transform.localScale, value =>
