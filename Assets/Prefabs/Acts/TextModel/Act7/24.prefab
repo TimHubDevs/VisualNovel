@@ -53,7 +53,7 @@ MonoBehaviour:
     \u0423\u0436\u0435 \u043C\u0430\u0439\u0436\u0435 \u043F\u043E\u043C\u0435\u0440.
     \u0410\u043B\u0435 \u0449\u0435 \u043D\u0435 \u043F\u0456\u0437\u043D\u043E..."
   characterType: 3
-  character: {fileID: 21300000, guid: 70f25634485bb2741876c1f3c6d1f27e, type: 3}
+  character: {fileID: 21300000, guid: 74c88c03f50d5bd4dadd0581cf22c540, type: 3}
   showCharacter: 0
   relationPoint: 0
   nextMessage:

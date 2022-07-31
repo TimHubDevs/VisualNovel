@@ -51,7 +51,7 @@ MonoBehaviour:
     \u0431\u0443\u0434\u044C \u044F\u043A\u043E\u0433\u043E \u0441\u0435\u043D\u0441\u0443.
     \u0422\u0430\u043A, \u043A\u0432\u0456\u0442.."
   characterType: 3
-  character: {fileID: 21300000, guid: 70f25634485bb2741876c1f3c6d1f27e, type: 3}
+  character: {fileID: 21300000, guid: d5521a6cb64c33545882b610ea0dad05, type: 3}
   showCharacter: 0
   relationPoint: 0
   nextMessage:
