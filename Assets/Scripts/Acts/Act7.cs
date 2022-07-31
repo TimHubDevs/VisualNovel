@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,7 +10,10 @@ public class Act7 : Act
     [SerializeField] private Sprite _backNeutral;
     [SerializeField] private Sprite _backBad;
     [SerializeField] private Sprite _finalSprite;
+    [SerializeField] private List<Sprite> _titres;
     [SerializeField] private GameObject Panel;
+    [SerializeField] private GameObject Dark1;
+    [SerializeField] private GameObject Dark2;
     private int chosenStep;
     private MessageModel chosenMessage;
     
@@ -618,7 +622,29 @@ public class Act7 : Act
         AnimateObjectScaleUp(_background.transform, 3, 3,10);
         _background.transform.DOMoveY(1000, 10);
         yield return new WaitForSeconds(10);
+        Dark1.SetActive(false);
+        Dark2.SetActive(false);
         //Show titre
+        BackObjectScale(_background.transform);
+        _background.transform.DOMoveY(540, 0);
+        _background.sprite = _titres[0];
+        yield return new WaitForSeconds(5);
+        _background.sprite = _titres[1];
+        yield return new WaitForSeconds(5);
+        _background.sprite = _titres[2];
+        yield return new WaitForSeconds(5);
+        _background.sprite = _titres[3];
+        yield return new WaitForSeconds(5);
+        _background.sprite = _titres[4];
+        yield return new WaitForSeconds(5);
+        _background.sprite = _titres[5];
+        yield return new WaitForSeconds(5);
+        _background.sprite = _titres[6];
+        yield return new WaitForSeconds(5);
+        _background.sprite = _titres[7];
+        yield return new WaitForSeconds(5);
+        _background.sprite = _titres[8];
+        yield return new WaitForSeconds(5);
         isActEnd = true;
     }
 }
