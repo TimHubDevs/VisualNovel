@@ -47,7 +47,7 @@ MonoBehaviour:
   text: "\u0410 \u043D\u0430\u043C \u0443\u0436\u0435 \u043F\u043E\u0440\u0430. \u0414\u044F\u043A\u0443\u044E
     \u0442\u043E\u0431\u0456 \u0437\u0430 \u0432\u0441\u0435. \u041F\u0440\u043E\u0449\u0430\u0432\u0430\u0439."
   characterType: 4
-  character: {fileID: 21300000, guid: 3ba263f824d114e49ab7b326e599746a, type: 3}
+  character: {fileID: 21300000, guid: 12a9ceb1bcce8314c96d0c2b2dfdf2b9, type: 3}
   showCharacter: 0
   relationPoint: 0
   nextMessage:

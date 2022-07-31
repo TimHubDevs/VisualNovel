@@ -27,7 +27,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -55,8 +54,8 @@ MonoBehaviour:
     \u0437 \u0437\u0435\u043C\u043B\u0456 \u0456 \u0432\u0438\u043A\u0438\u043D\u0443\u043B\u0438
     \u043D\u0430\u0447\u0435 \u043D\u0435\u043F\u043E\u0442\u0440\u0456\u0431.\n"
   characterType: 1
-  character: {fileID: 21300000, guid: 11364e52db814a241ba076cab33f73d3, type: 3}
+  character: {fileID: 21300000, guid: 20201f53f030267439c9b96b48bc44f7, type: 3}
   showCharacter: 0
   relationPoint: 0
   nextMessage:
-  - {fileID: 0}
+  - {fileID: 3669325638293842582, guid: d79a30cfe2246d74ba0e348fdb745c5c, type: 3}
