@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 6
-  text: "\u042F\u043A \u0442\u0432\u043E\u0457 \u0431\u0430\u0442\u044C\u043A\u0438,
-    \u0432\u043F\u043E\u0440\u044F\u0434\u043A\u0443?"
+  text: "\u042F\u043A \u0442\u0432\u043E\u0457 \u0431\u0430\u0442\u044C\u043A\u0438?
+    \u0412 \u043F\u043E\u0440\u044F\u0434\u043A\u0443?"
   characterType: 7
   character: {fileID: 21300000, guid: 343b60333690f0b42b6354d7242911f5, type: 3}
   showCharacter: 0
