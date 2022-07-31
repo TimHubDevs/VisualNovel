@@ -192,6 +192,11 @@ public class Act : MonoBehaviour
         transform.DOShakePosition(duration, 2f);
     }
     
+    protected void AnimateObjectDistorb(Transform transform, int duration)
+    {
+        transform.DOShakePosition(duration, 50f, 100, 1);
+    }
+    
     protected void StopObjectTween(Transform transform)
     {
         DOTween.Kill(transform);
