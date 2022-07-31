@@ -174,4 +174,9 @@ public class Settings : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Support()
+    {
+        Application.OpenURL("https://www.patreon.com/timteamdev");
+    }
 }
