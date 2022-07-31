@@ -200,7 +200,7 @@ public class Act6 : Act
         var point3 = _currentMessage.nextMessage[2].relationPoint;
         SetCharacterSprite(_currentMessage.character, false);
         characterName.text = "Ви ";
-        SetChooseButton(message1, point1, message2, point2, message3, point3, nextMessage =>
+        SetChooseButtons(message1, point1, message2, point2, message3, point3, nextMessage =>
         {
             _currentMessage = nextMessage;
             switch (_currentMessage.id)

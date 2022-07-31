@@ -157,7 +157,7 @@ public class Act3 : Act
         var point2 = _currentMessage.nextMessage[1].relationPoint;
         var point3 = _currentMessage.nextMessage[2].relationPoint;
         characterName.text = "Ви ";
-        SetChooseButton(message1, point1, message2, point2, message3, point3, nextMessage =>
+        SetChooseButtons(message1, point1, message2, point2, message3, point3, nextMessage =>
         {
             _currentMessage = nextMessage;
             switch (_currentMessage.id)

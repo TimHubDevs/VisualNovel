@@ -127,7 +127,7 @@ public class Act : MonoBehaviour
         _character.sprite = null;
     }
     
-    protected void SetChooseButton(string choose1Text, int relationPoint1, string choose2Text, int relationPoint2, string choose3Text, int relationPoint3, Action<MessageModel> finalMessage)
+    protected void SetChooseButtons(string choose1Text, int relationPoint1, string choose2Text, int relationPoint2, string choose3Text, int relationPoint3, Action<MessageModel> finalMessage)
     {
         choosePanel.SetActive(true);
         buttons[0].gameObject.SetActive(false);
@@ -157,6 +157,20 @@ public class Act : MonoBehaviour
             buttons[0].gameObject.SetActive(true);
             finalMessage.Invoke(_currentMessage.nextMessage[2]);
             ClearButtonsListener();
+        });
+    }
+    
+    protected void SetChooseButton(string choose1Text, Action<MessageModel> finalMessage)
+    {
+        buttons[0].gameObject.SetActive(false);
+        buttons[1].gameObject.SetActive(true);
+        buttons[1].GetComponentInChildren<Text>().text = choose1Text;
+        buttons[1].onClick.AddListener(()=>
+        {
+            buttons[1].gameObject.SetActive(false);
+            buttons[0].gameObject.SetActive(true);
+            finalMessage.Invoke(_currentMessage.nextMessage[0]);
+            buttons[1].onClick.RemoveAllListeners();
         });
     }
 

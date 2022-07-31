@@ -7,8 +7,9 @@ public class Act7 : Act
     [SerializeField] private Sprite _backHappy;
     [SerializeField] private Sprite _backNeutral;
     [SerializeField] private Sprite _backBad;
+    [SerializeField] private Sprite _finalSprite;
     private int chosenStep;
-    private MessageModel chosenNextMessage;
+    private MessageModel chosenMessage;
     
     public override void StartAct(Action endCallback)
     {
@@ -45,22 +46,10 @@ public class Act7 : Act
     
     protected override void NextStep()
     {
-        if (currentStep == 10 || currentStep == 9 || currentStep == 8)
+        if (currentStep == 4)
         {
             currentStep = chosenStep;
-            var point = PlayerPrefsSaveSystem.LoadPlayerRelationSheepPoint();
-            switch (currentStep)
-            {
-                case 10:
-                    chosenNextMessage = point >= 1 ? _currentMessage.nextMessage[0].nextMessage[1] : _currentMessage.nextMessage[0].nextMessage[0];
-                    break;
-                case 9:
-                    chosenNextMessage = _currentMessage.nextMessage[0].nextMessage[0];
-                    break;
-                case 8:
-                    chosenNextMessage = point >= 1 ? _currentMessage.nextMessage[0].nextMessage[1] : _currentMessage.nextMessage[0].nextMessage[0];
-                    break;
-            }
+            _currentMessage = chosenMessage;
         }
         switch (currentStep)
         {
@@ -78,6 +67,12 @@ public class Act7 : Act
                 break;
             case 5:
                 StepFive();
+                break;
+            case 6:
+                StepSix();
+                break;
+            case 7:
+                StepSeven();
                 break;
             case 8:
                 StepEight();
@@ -116,7 +111,31 @@ public class Act7 : Act
                 StepNineteen();
                 break;
             case 20:
-                StartCoroutine(StepTwenty());
+                StepTwenty();
+                break;
+            case 21:
+                StepTwentyOne();
+                break;
+            case 22:
+                StepTwentyTwo();
+                break;
+            case 23:
+                StepTwentyThree();
+                break;
+            case 24:
+                StepTwentyFour();
+                break;
+            case 25:
+                StepTwentyFive();
+                break;
+            case 26:
+                StepTwentySix();
+                break;
+            case 27:
+                StepTwentySeven();
+                break;
+            case 28:
+                StartCoroutine(StepTwentyEight());
                 break;
         }
     }
@@ -170,13 +189,16 @@ public class Act7 : Act
         var points = PlayerPrefsSaveSystem.LoadPlayerRelationSheepPoint();
         if (points > 9)
         {
-            currentStep = _currentMessage.nextMessage[0].id;
+            chosenStep = _currentMessage.nextMessage[0].id;
+            chosenMessage = _currentMessage.nextMessage[0];
         }else if (points > 1 && points < 9)
         {
-            currentStep = _currentMessage.nextMessage[1].id;
+            chosenStep = _currentMessage.nextMessage[1].id;
+            chosenMessage = _currentMessage.nextMessage[1];
         }else if (points <= 1)
         {
-            currentStep = _currentMessage.nextMessage[2].id;
+            chosenStep = _currentMessage.nextMessage[2].id;
+            chosenMessage = _currentMessage.nextMessage[2];
         }
     }
     
@@ -187,9 +209,9 @@ public class Act7 : Act
         characterSay.text = String.Empty;
         settings.mainThemeSource.clip = _actSound[1];
         settings.mainThemeSource.Play();
-        _currentMessage = _currentMessage.nextMessage[0];
         characterName.text = "Надія ";
         SetCharacterSprite(_currentMessage.character, false);
+        _background.sprite = _backHappy;
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -248,39 +270,6 @@ public class Act7 : Act
         StartCoroutine(_currentCoroutine);
     }
 
-    // private void StepFive()
-    // {
-    //     _textFull = false;
-    //     characterName.text = String.Empty;
-    //     characterSay.text = String.Empty;
-    //     var message1 = _currentMessage.nextMessage[0].text;
-    //     var message2 = _currentMessage.nextMessage[1].text;
-    //     var message3 = _currentMessage.nextMessage[2].text;
-    //     var point1 = _currentMessage.nextMessage[0].relationPoint;
-    //     var point2 = _currentMessage.nextMessage[1].relationPoint;
-    //     var point3 = _currentMessage.nextMessage[2].relationPoint;
-    //     SetCharacterSprite(_currentMessage.character, false);
-    //     characterName.text = "Ви ";
-    //     SetChooseButton(message1, point1, message2, point2, message3, point3, nextMessage =>
-    //     {
-    //         _currentMessage = nextMessage;
-    //         switch (_currentMessage.id)
-    //         {
-    //             case 5:
-    //                 chosenStep = 8;
-    //                 break;
-    //             case 6:
-    //                 chosenStep = 9;
-    //                 break;
-    //             case 7:
-    //                 chosenStep = 10;
-    //                 break;
-    //         }
-    //         currentStep = _currentMessage.id;
-    //         OnButtonClick();
-    //     });
-    // }
-
     private void StepEight()
     {
         _textFull = false;
@@ -292,10 +281,10 @@ public class Act7 : Act
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
+            currentStep++;
             Debug.Log("End Text 8");
         });
         StartCoroutine(_currentCoroutine);
-        currentStep = chosenNextMessage.id;
     }
     
     private void StepNine()
@@ -305,13 +294,14 @@ public class Act7 : Act
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
         characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
+            currentStep++;
             Debug.Log("End Text 9");
         });
         StartCoroutine(_currentCoroutine);
-        currentStep = chosenNextMessage.id;
     }
 
     private void StepTen()
@@ -321,13 +311,11 @@ public class Act7 : Act
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
         characterName.text = "Ви ";
-        _currentCoroutine = ShowText(_currentMessage.text, () =>
+        SetChooseButton(_currentMessage.text, model =>
         {
-            _textFull = true;
-            Debug.Log("End Text 10");
+            currentStep = _currentMessage.id;
+            OnButtonClick();
         });
-        StartCoroutine(_currentCoroutine);
-        currentStep = chosenNextMessage.id;
     }
 
     private void StepEleven()
@@ -335,7 +323,9 @@ public class Act7 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
-        _currentMessage = _currentMessage.nextMessage[0];
+        settings.mainThemeSource.clip = _actSound[2];
+        settings.mainThemeSource.Play();
+        _background.sprite = _backNeutral;
         characterName.text = "Ви ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
@@ -352,7 +342,8 @@ public class Act7 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Ви ";
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -368,7 +359,7 @@ public class Act7 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Надія ";
+        characterName.text = "Ви ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -384,7 +375,8 @@ public class Act7 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Дід ";
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -396,13 +388,12 @@ public class Act7 : Act
     
     private void StepFifteen()
     {
-        AnimateImageHide(_character, 5);
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Ви ";
-        characterSay.font = fontForText[1];
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -418,8 +409,7 @@ public class Act7 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Ви ";
-        characterSay.font = fontForText[0];
+        characterName.text = "Надія ";
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -435,8 +425,8 @@ public class Act7 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Дід ";
-        characterSay.font = fontForText[0];
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -452,15 +442,12 @@ public class Act7 : Act
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
         _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Софія ";
-        characterSay.font = fontForText[0];
-        _currentCoroutine = ShowText(_currentMessage.text, () =>
+        characterName.text = "Ви ";
+        SetChooseButton(_currentMessage.text, model =>
         {
-            _textFull = true;
-            currentStep++;
-            Debug.Log("End Text 18");
+            currentStep = _currentMessage.id;
+            OnButtonClick();
         });
-        StartCoroutine(_currentCoroutine);
     }
     
     private void StepNineteen()
@@ -468,9 +455,11 @@ public class Act7 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
-        _currentMessage = _currentMessage.nextMessage[0];
-        characterName.text = "Дід ";
-        characterSay.font = fontForText[0];
+        settings.mainThemeSource.clip = _actSound[3];
+        settings.mainThemeSource.Play();
+        _background.sprite = _backBad;
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
         _currentCoroutine = ShowText(_currentMessage.text, () =>
         {
             _textFull = true;
@@ -480,16 +469,152 @@ public class Act7 : Act
         StartCoroutine(_currentCoroutine);
     }
     
-    private IEnumerator StepTwenty()
+    private void StepTwenty()
+    {
+        _textFull = false;
+        characterName.text = String.Empty;
+        characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
+        characterName.text = "Ви ";
+        _currentCoroutine = ShowText(_currentMessage.text, () =>
+        {
+            _textFull = true;
+            currentStep++;
+            Debug.Log("End Text 20");
+        });
+        StartCoroutine(_currentCoroutine);
+    }
+    
+    private void StepTwentyOne()
+    {
+        _textFull = false;
+        characterName.text = String.Empty;
+        characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
+        _currentCoroutine = ShowText(_currentMessage.text, () =>
+        {
+            _textFull = true;
+            currentStep++;
+            Debug.Log("End Text 20");
+        });
+        StartCoroutine(_currentCoroutine);
+    }
+    
+    private void StepTwentyTwo()
+    {
+        _textFull = false;
+        characterName.text = String.Empty;
+        characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
+        characterName.text = "Ви ";
+        _currentCoroutine = ShowText(_currentMessage.text, () =>
+        {
+            _textFull = true;
+            currentStep++;
+            Debug.Log("End Text 20");
+        });
+        StartCoroutine(_currentCoroutine);
+    }
+    
+    private void StepTwentyThree()
+    {
+        _textFull = false;
+        characterName.text = String.Empty;
+        characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
+        _currentCoroutine = ShowText(_currentMessage.text, () =>
+        {
+            _textFull = true;
+            currentStep++;
+            Debug.Log("End Text 20");
+        });
+        StartCoroutine(_currentCoroutine);
+    }
+    
+    private void StepTwentyFour()
+    {
+        _textFull = false;
+        characterName.text = String.Empty;
+        characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
+        _currentCoroutine = ShowText(_currentMessage.text, () =>
+        {
+            _textFull = true;
+            currentStep++;
+            Debug.Log("End Text 20");
+        });
+        StartCoroutine(_currentCoroutine);
+    }
+    
+    private void StepTwentyFive()
+    {
+        _textFull = false;
+        characterName.text = String.Empty;
+        characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
+        _currentCoroutine = ShowText(_currentMessage.text, () =>
+        {
+            _textFull = true;
+            currentStep++;
+            Debug.Log("End Text 20");
+        });
+        StartCoroutine(_currentCoroutine);
+    }
+    
+    private void StepTwentySix()
+    {
+        _textFull = false;
+        characterName.text = String.Empty;
+        characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
+        characterName.text = "Надія ";
+        SetCharacterSprite(_currentMessage.character, false);
+        _currentCoroutine = ShowText(_currentMessage.text, () =>
+        {
+            _textFull = true;
+            currentStep++;
+            Debug.Log("End Text 20");
+        });
+        StartCoroutine(_currentCoroutine);
+    }
+    
+    private void StepTwentySeven()
+    {
+        _textFull = false;
+        characterName.text = String.Empty;
+        characterSay.text = String.Empty;
+        _currentMessage = _currentMessage.nextMessage[0];
+        characterName.text = "Ви ";
+        SetChooseButton(_currentMessage.text, model =>
+        {
+            currentStep = _currentMessage.id;
+            OnButtonClick();
+        });
+    }
+    
+    private IEnumerator StepTwentyEight()
     {
         isCanTap = false;
+        //музыка
+        // settings.mainThemeSource.clip = _actSound[4];
+        // settings.mainThemeSource.Play();
         AnimateImageShow(_foreground, 0);
-        settings.soundThemeSource.clip = _actSound[1];
-        settings.soundThemeSource.Play();
+        AnimateImageHide(_character, 0);
+        _background.sprite = _finalSprite;
         yield return new WaitForSeconds(3);
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
-        _currentMessage = _startMessage;
+        AnimateImageHide(_foreground, 0);
+        yield return new WaitForSeconds(10);
+        //Show titre
         isActEnd = true;
     }
 }
