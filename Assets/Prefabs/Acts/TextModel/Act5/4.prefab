@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &441438802884370186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 441438802884370184}
+  - component: {fileID: 441438802884370185}
+  m_Layer: 0
+  m_Name: 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &441438802884370184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441438802884370186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &441438802884370185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441438802884370186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0724d35f460c43145af6b0557bae65c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 4
+  text: "\u041E-\u043E-\u043E, \u043E\u043A\u043B\u0438\u0433\u0430\u0432! \u0414\u0438\u0442\u0438\u043D\u043E.
+    \u041D\u0443 \u0445\u043E\u0447 \u043D\u0430 \u043D\u043E\u0433\u0430\u0445 \u0442\u0435\u043F\u0435\u0440
+    \u0441\u0442\u043E\u0457\u0448! \u0429\u043E \u0437 \u0442\u043E\u0431\u043E\u044E
+    \u0441\u0442\u0430\u043B\u043E\u0441\u044F? \u0406\u0434\u0443 \u0432 \u0441\u0435\u043B\u043E
+    \u0437 \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u0430\u043C\u0438. \u0423 \u043D\u0430\u0441
+    \u0437\u0440\u0443\u0439\u043D\u0443\u0432\u0430\u043B\u0438. \u041E\u0440\u043A\u0438
+    \u043A\u043B\u044F\u0442\u0456."
+  characterType: 8
+  character: {fileID: 21300000, guid: ba0b03fba78a0784abc8487f2bc12833, type: 3}
+  showCharacter: 0
+  relationPoint: 0
+  nextMessage:
+  - {fileID: 8816815590337489603, guid: 71e1354c14c911e4abec55b129ce7917, type: 3}
