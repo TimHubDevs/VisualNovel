@@ -90,6 +90,9 @@ public class Act5 : Act
         characterSay.text = String.Empty;
         settings.soundThemeSource.clip = _actSound[1];
         settings.soundThemeSource.Play();
+        yield return new WaitForSeconds(11);
+        settings.soundThemeSource.clip = _actSound[2];
+        settings.soundThemeSource.Play();
         yield return new WaitForSeconds(4);
         settings.mainThemeSource.Play();
         _particleSystem.Stop();
@@ -116,7 +119,7 @@ public class Act5 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
-        settings.soundThemeSource.clip = _actSound[1];
+        settings.soundThemeSource.clip = _actSound[2];
         settings.soundThemeSource.Play();
         yield return new WaitForSeconds(4);
         _currentMessage = _currentMessage.nextMessage[0];
@@ -217,7 +220,7 @@ public class Act5 : Act
     
     private void StepEight()
     {
-        settings.soundThemeSource.clip = _actSound[2];
+        settings.soundThemeSource.clip = _actSound[3];
         settings.soundThemeSource.Play();
         _textFull = false;
         characterName.text = String.Empty;
@@ -274,7 +277,7 @@ public class Act5 : Act
         _textFull = false;
         characterName.text = String.Empty;
         characterSay.text = String.Empty;
-        settings.soundThemeSource.clip = _actSound[1];
+        settings.soundThemeSource.clip = _actSound[2];
         settings.soundThemeSource.Play();
         AnimateImageShow(_foregroundWithText, 3);
         yield return new WaitForSeconds(4);
