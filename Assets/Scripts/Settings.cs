@@ -10,8 +10,11 @@ public class Settings : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] public AudioSource mainThemeSource, soundThemeSource, soundUISourсe;
     [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider speedTextSlider;
     [SerializeField] private GameObject dashMusic;
     [SerializeField] private GameObject dashSound;
+    [SerializeField] private GameLogic gameLogic;
+    private float coefficientTapingDelay;
 
     private Resolution[] _resolutions;
 
@@ -25,7 +28,7 @@ public class Settings : MonoBehaviour
             string option = _resolutions[i].width + "x" + _resolutions[i].height + " " + _resolutions[i].refreshRate + "Hz";
             options.Add(option);
         }
-       
+
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
 #if UNITY_WEBGL
@@ -66,6 +69,7 @@ public class Settings : MonoBehaviour
         PlayerPrefsSaveSystem.SetThemeSource(changeThemeSource);
         PlayerPrefsSaveSystem.SetSoundState(changeSoundState);
         PlayerPrefsSaveSystem.SetVolumeSliderValue(volumeSlider.value);
+        PlayerPrefsSaveSystem.SetSpeedTextValue(speedTextSlider.value);
     }
 
     private void LoadSettings()
@@ -78,6 +82,7 @@ public class Settings : MonoBehaviour
         soundUISourсe.mute = PlayerPrefsSaveSystem.LoadChangeSoundState();
         soundThemeSource.mute = PlayerPrefsSaveSystem.LoadChangeEventMusic();
         volumeSlider.value = PlayerPrefsSaveSystem.LoadVolumeSliderSetting();
+        speedTextSlider.value = PlayerPrefsSaveSystem.LoadSpeedTextSetting();
         dashMusic.SetActive(mainThemeSource.mute);
         dashSound.SetActive(soundUISourсe.mute);
         volumeSlider.gameObject.SetActive(!mainThemeSource.mute || !soundUISourсe.mute);
@@ -86,17 +91,26 @@ public class Settings : MonoBehaviour
         {
             SetResolution();
         });
+        SetResolution();
         fullScreenToggle.onValueChanged.AddListener(arg =>
         {
             SetFullscreen();
         });
+        SetFullscreen();
 #endif
         volumeSlider.onValueChanged.AddListener(arg =>
         {
             SetVolume();
         });
+        SetVolume();
+        
+        speedTextSlider.onValueChanged.AddListener(arg =>
+        {
+            SetSpeedText();
+        });
+        SetSpeedText();
     }
-    
+
     public void SetVolume()
     {
         mainThemeSource.volume = volumeSlider.value - 0.1f;
@@ -104,6 +118,18 @@ public class Settings : MonoBehaviour
         soundUISourсe.volume = volumeSlider.value;
         SaveSettings();
     }
+
+    public void SetSpeedText()
+    {
+        float value = speedTextSlider.value;
+        coefficientTapingDelay = 0.1f - value + 0.01f;
+        SaveSettings();
+        foreach (var act in gameLogic._acts)
+        {
+            act.SetTapingDelayValue(coefficientTapingDelay);
+        }
+    }
+
 
     public void ChangeMusicState()
     {

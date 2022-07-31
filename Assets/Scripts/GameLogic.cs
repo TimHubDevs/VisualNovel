@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
-    [SerializeField] private List<Act> _acts;
+    [SerializeField] public List<Act> _acts;
     [SerializeField] private Settings _settings;
     [SerializeField] private AudioClip _menuClip;
 
